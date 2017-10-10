@@ -1,0 +1,42 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: asbish/docker-stack-yarn
+
+    working_directory: ~/repo
+
+    branches:
+      only:
+        - master
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - node-cache-{{ checksum "package.json" }}
+
+      - restore_cache:
+          keys:
+            - stack-cache-{{ checksum "asbi-sh.cabal" }}
+
+      - run: yarn install
+      - run: yarn lint
+      - run: yarn build-assets
+
+      - run: stack setup
+      - run: stack build
+      - run: stack exec site build
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: node-cache-{{ checksum "package.json" }}
+
+      - save_cache:
+          paths:
+            - ~/.stack
+          key: stack-cache-{{ checksum "asbi-sh.cabal" }}
+
+      - run: firebase deploy --project "$FIREBASE_PROJECT" --token "$FIREBASE_TOKEN"

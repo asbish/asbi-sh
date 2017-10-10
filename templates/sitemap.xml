@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+$for(contents)$
+  <url>
+    <loc>$loc$</loc>
+    $if(lastmod)$<lastmod>$lastmod$</lastmod>$endif$
+    $if(changefreq)$<changefreq>$changefreq$</changefreq>$endif$
+    $if(priority)$<priority>$priority$</priority>$endif$
+  </url>
+$endfor$
+</urlset>
