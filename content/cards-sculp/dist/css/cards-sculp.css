@@ -1,0 +1,22 @@
+.cards-sculp {
+  text-align: center;
+}
+
+.cards-sculp_img {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.cards-sculp_img + .cards-sculp_img {
+  margin: 16px 0 0 0;
+}
+
+@media only screen and (min-width: 550px) {
+  .cards-sculp_img {
+    max-width: 49%;
+  }
+
+  .cards-sculp_img + .cards-sculp_img {
+    margin: 0 0 0 1%;
+  }
+}

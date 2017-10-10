@@ -1,0 +1,12 @@
+---
+title: Robozilla
+date: 2017-10-03T22:42:26+0900
+styles: '<%= htmlWebpackPlugin.files.css[0] %>'
+scripts:
+ - 'https://ajax.googleapis.com/ajax/libs/threejs/r84/three.min.js'
+ - '<%= htmlWebpackPlugin.files.js[0] %>'
+---
+<div id="robozilla-cntr" class="plain robozilla-cntr">
+  <div class="robozilla-img"><img src="<%= require('./img/robozilla-top.png') %>" alt="ロボジラ"></div>
+  <div id="robozilla-canvas" class="robozilla-canvas"></div>
+</div>

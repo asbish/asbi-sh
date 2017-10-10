@@ -1,0 +1,44 @@
+body {
+  background: #ffff32;
+}
+
+.robozilla-cntr {
+  position: relative;
+  width: 100%;
+}
+
+.robozilla-img {
+  padding: 16px 16px 0;
+}
+
+.robozilla-img img {
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  width: 100%;
+}
+
+.robozilla-canvas, canvas {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+}
+
+@media only screen and (min-width: 769px) {
+  .robozilla-cntr {
+    width: 640px;
+  }
+
+  .robozilla-img {
+    padding: 0;
+  }
+
+  .robozilla-img img {
+    height: 320px;
+    width: 640px;
+  }
+
+  .robozilla-canvas {
+    height: 300px;
+  }
+}
