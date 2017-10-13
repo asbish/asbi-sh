@@ -60,10 +60,10 @@ function toggleMenu() {
 
 function init() {
   const menu = document.getElementById('menu');
+  const body = document.getElementsByTagName('body')[0];
 
   if (!this || window.innerWidth !== width) {
     width = window.innerWidth;
-    const body = document.getElementsByTagName('body')[0];
     const icoMenu = document.getElementById('ico-menu');
     if (window.innerWidth < 769) {
       menu.style['transition-duration'] = '150ms';
@@ -79,6 +79,6 @@ function init() {
 
   if (!this || window.innerHeight !== height) {
     height = window.innerHeight;
-    menu.style['min-height'] = height.toString() + 'px';
+    menu.style['min-height'] = body.offsetHeight.toString() + 'px';
   }
 }
