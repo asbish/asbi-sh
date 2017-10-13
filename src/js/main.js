@@ -8,6 +8,7 @@ import {
 
 let timeout;
 let width = window.innerWidth;
+let height = window.innerHeight;
 
 document.getElementById('ico-menu')
   .addEventListener('mousedown', toggleMenu, false);
@@ -62,7 +63,6 @@ function init() {
 
   if (!this || window.innerWidth !== width) {
     width = window.innerWidth;
-
     const body = document.getElementsByTagName('body')[0];
     const icoMenu = document.getElementById('ico-menu');
     if (window.innerWidth < 769) {
@@ -75,5 +75,10 @@ function init() {
       icoMenu.setAttribute('aria-hidden', 'true');
       if (body.getAttribute('data-menu') === 'opened') toggleMenu();
     }
+  }
+
+  if (!this || window.innerHeight !== height) {
+    height = window.innerHeight;
+    menu.style['min-height'] = height.toString() + 'px';
   }
 }
