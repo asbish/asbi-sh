@@ -79,6 +79,10 @@ function init() {
 
   if (!this || window.innerHeight !== height) {
     height = window.innerHeight;
-    menu.style['min-height'] = body.offsetHeight.toString() + 'px';
+    if (window.innerWidth >= 769) {
+      menu.style['min-height'] = '100vh';
+    } else {
+      menu.style['min-height'] = body.offsetHeight.toString() + 'px';
+    }
   }
 }
