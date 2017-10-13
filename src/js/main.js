@@ -18,14 +18,6 @@ document.getElementById('ico-menu').addEventListener('keydown', (e) => {
   toggleMenu();
 }, false);
 
-document.getElementById('menu')
-  .addEventListener('transitionend', function(e) {
-    const body = document.getElementsByTagName('body')[0];
-    if (e.target === this && e.propertyName === 'transform') {
-      toggleAttr(body, 'data-menu-transitionend', 'closed', 'opened');
-    }
-  }, false);
-
 document.getElementById('mask')
   .addEventListener('mousedown', toggleMenu, false);
 
