@@ -446,6 +446,7 @@ main[aria-hidden="true"] {
   }
 
   .header {
+    background: rgba(0,0,0,0);
     flex-basis: var(--headerWidth);
     flex-direction: column;
     flex-grow: 1;
@@ -469,7 +470,7 @@ main[aria-hidden="true"] {
     z-index: 3000;
   }
 
-  .header_icomenu[aria-hidden="true"] {
+  .header_icomenu {
     display: none;
   }
 
