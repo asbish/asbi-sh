@@ -10,7 +10,7 @@
 }
 
 @custom-media --pcWidth only screen and (min-width: 769px);
-/* (- (+ 640 270 270) 22 22 22)  */
+/* (- (+ 640 270 270) 22 22 22) */
 @custom-media --pcMaxWidth only screen and (min-width: 1114px);
 
 
@@ -54,7 +54,7 @@ h1 {
   font-size: 18px;
 }
 
-h2,h3 {
+h2, h3 {
   font-size: 16px;
 }
 
@@ -341,7 +341,7 @@ button {
     position: relative;
   }
 
-  &  + .link_external_item {
+  & + .link_external_item {
     margin: 6px 0 0;
   }
 }
@@ -518,7 +518,7 @@ main[aria-hidden="true"] {
   }
 
   .link_external_item {
-    &  + .link_external_item {
+    & + .link_external_item {
       margin: 6px 0 0;
     }
   }
