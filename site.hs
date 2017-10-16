@@ -8,9 +8,6 @@ import           Data.Map.Strict     (Map)
 import qualified Data.Map.Strict     as Map
 import           Data.Maybe          (fromMaybe)
 import           Data.Monoid         (mempty, (<>))
-import qualified Data.Text           as T
-import qualified Data.Vector         as V
-import qualified Data.Yaml           as Yml
 import           System.Environment  (lookupEnv)
 import           Text.Regex.TDFA     (getAllTextSubmatches, (=~))
 
@@ -132,15 +129,11 @@ contentsCtx (ctMap, ctItems) idt = listField "contents" ctx $ return ctItems
 includeCtx :: Metadata -> Context String
 includeCtx meta = mkCtx "styles" "style" <> mkCtx "scripts" "script"
   where
-    has (Yml.String v) = Just [T.unpack v]
-    has (Yml.Array v)  = fmap concat $ sequence $ has <$> V.toList v
-    has _              = Nothing
-
     mkItems :: [String] -> Compiler [Item String]
     mkItems = traverse makeItem
 
     mkCtx :: String -> String -> Context String
-    mkCtx k k' = case has =<< HMap.lookup (T.pack k) meta of
+    mkCtx k k' = case lookupStringList k meta of
         Nothing -> mempty
         Just v  -> listField k (field k' (return . itemBody)) $ mkItems v
 
