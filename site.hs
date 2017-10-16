@@ -41,7 +41,7 @@ main = hakyll $ do
 
 
     host <- preprocess $
-        fromMaybe "https://www.asbi.sh/" <$> lookupEnv "SITE_HOST"
+        fromMaybe "https://www.asbi.sh" <$> lookupEnv "SITE_HOST"
 
 
     contents@(ctMap, _) <- mkContents "content/*/dist/index.html"
@@ -162,7 +162,8 @@ sitemapCtx (ctMap, ctItems) host = listField "contents" ctx $ return ctItems'
 locationCtx :: Map Identifier String -> String -> Context String
 locationCtx ctMap host = field "loc" loc
   where
-    loc = return . replaceIdx . (host++) . (Map.!) ctMap . itemIdentifier
+    loc = return . replaceIdx . (host++) . ("/"++)
+        . (Map.!) ctMap . itemIdentifier
 
 
 relativizeUrlsNoIndex :: Item String -> Compiler (Item String)
