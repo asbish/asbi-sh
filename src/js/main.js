@@ -52,13 +52,10 @@ function init() {
     width = window.innerWidth;
     const menu = document.getElementById('menu');
     const body = document.getElementsByTagName('body')[0];
-    const icoMenu = document.getElementById('ico-menu');
     if (window.innerWidth < 769) {
       menu.style['transition-duration'] = '150ms';
-      icoMenu.setAttribute('aria-hidden', 'false');
     } else {
       menu.style['transition-duration'] = '0s';
-      icoMenu.setAttribute('aria-hidden', 'true');
       if (body.getAttribute('data-menu') === 'opened') toggleMenu();
     }
   }
