@@ -16,7 +16,4 @@ executable site
                   , hakyll == 4.9.*
                   , containers
                   , regex-tdfa
-                  , text
                   , unordered-containers
-                  , vector
-                  , yaml
