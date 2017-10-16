@@ -153,10 +153,9 @@ sitemapCtx (ctMap, ctItems) host = listField "contents" ctx $ return ctItems'
 
 
 locationCtx :: Map Identifier String -> String -> Context String
-locationCtx ctMap host = field "loc" loc
+locationCtx ctMap host = field "loc" $ return . loc
   where
-    loc = return . replaceIdx . (host++) . ("/"++)
-        . (Map.!) ctMap . itemIdentifier
+    loc = (host++) . replaceIdx . ("/"++) . (Map.!) ctMap . itemIdentifier
 
 
 relativizeUrlsNoIndex :: Item String -> Compiler (Item String)
