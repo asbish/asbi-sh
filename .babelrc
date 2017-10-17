@@ -1,12 +1,19 @@
 {
   "env": {
     "default": {
-      "presets": ["es2015", "stage-3"]
+      "presets": [
+        [
+          "env", {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
+      ]
     },
     "umd": {
       "plugins": ["external-helpers"],
       "presets": [
-        "minify",
         [
           "env", {
             "modules": false,
