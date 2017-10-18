@@ -352,10 +352,6 @@ button {
   flex-shrink: 1;
   font-size: 12px;
   padding: 12px 12px 12px 0;
-
-  & a, & a:visited, & a:hover {
-    color: #666;
-  }
 }
 
 
