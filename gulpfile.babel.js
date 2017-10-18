@@ -14,7 +14,6 @@ import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import uglify from 'rollup-plugin-uglify';
 import {minify} from 'uglify-es';
-import 'babel-polyfill';
 
 process.env.BABEL_ENV = 'umd';
 
