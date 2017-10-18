@@ -4,6 +4,7 @@
   "description": "Website for asbi.sh",
   "author": "asbish",
   "private": true,
+  "license" : "BSD-3-Clause",
   "scripts": {
     "start": "BABEL_ENV=default gulp",
     "build": "BABEL_ENV=default gulp build",
