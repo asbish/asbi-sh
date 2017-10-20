@@ -366,10 +366,10 @@ main {
   max-width: 100%;
   min-width: 1px;
   position: relative;
-}
 
-main[aria-hidden="true"] {
-  overflow-y: hidden;
+  &[aria-hidden="true"] {
+    overflow-y: hidden;
+  }
 }
 
 .content {
@@ -407,7 +407,7 @@ main[aria-hidden="true"] {
 .home_illust {
   background-image: url("/art/home.png");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100%;
   height: calc(100vw - 32px);
   width: calc(100vw - 32px);
 }
