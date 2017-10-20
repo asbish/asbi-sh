@@ -1,12 +1,10 @@
-'use strict';
-
 import {
   toggleAttr,
   toggleStyle,
   toggleTabIndexes,
 } from './toggle.js';
+import {subscribeResize} from './subscribeViewport.js';
 
-let timeout;
 let width = window.innerWidth;
 
 document.getElementById('ico-menu')
@@ -20,12 +18,7 @@ document.getElementById('ico-menu').addEventListener('keydown', (e) => {
 document.getElementById('mask')
   .addEventListener('mousedown', toggleMenu, false);
 
-window.addEventListener('resize', () => {
-  clearTimeout(timeout);
-  timeout = setTimeout(init, 200);
-}, false);
-
-init();
+subscribeResize(resize);
 
 function toggleMenu() {
   const body = document.getElementsByTagName('body')[0];
@@ -47,7 +40,7 @@ function toggleMenu() {
   toggleStyle(lines[1], 'visibility', 'visible', 'hidden');
 }
 
-function init() {
+function resize() {
   if (!this || window.innerWidth !== width) {
     width = window.innerWidth;
     const menu = document.getElementById('menu');
