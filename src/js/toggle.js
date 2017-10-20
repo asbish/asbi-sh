@@ -1,5 +1,3 @@
-'use strict';
-
 export function toggleAttr(d, attr, vDef, v) {
   d.setAttribute(attr, d.getAttribute(attr) === v ? vDef : v);
 }
