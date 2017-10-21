@@ -3,7 +3,9 @@ import {
   toggleStyle,
   toggleTabIndexes,
 } from './toggle.js';
-import {subscribeResize} from './subscribeViewport.js';
+import {
+  subscribeResize,
+} from './viewport.js';
 
 let width = window.innerWidth;
 

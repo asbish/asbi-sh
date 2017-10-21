@@ -25,6 +25,11 @@ function listner() {
   timeout = setTimeout(call(cbs), 200);
 }
 
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return rect.top <= window.innerHeight && rect.bottom >= 0;
+}
+
 window.addEventListener('scroll', listner, false);
 window.addEventListener('resize', listner, false);
 
@@ -36,4 +41,5 @@ window.addEventListener('resize', () => {
 export {
   subscribe,
   subscribeResize,
+  isElementInViewport,
 };
