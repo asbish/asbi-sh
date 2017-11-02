@@ -1,11 +1,11 @@
+import './3rdPartyLicense.js';
 import {
   toggleAttr,
   toggleStyle,
   toggleTabIndexes,
 } from './toggle.js';
-import {
-  subscribeResize,
-} from './viewport.js';
+import {subscribeResize} from './viewport.js';
+import lazyImages from './lazyImages.js';
 
 let width = window.innerWidth;
 
@@ -21,6 +21,8 @@ document.getElementById('mask')
   .addEventListener('mousedown', toggleMenu, false);
 
 subscribeResize(resize);
+
+lazyImages();
 
 function toggleMenu() {
   const body = document.getElementsByTagName('body')[0];

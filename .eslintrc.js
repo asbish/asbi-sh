@@ -150,6 +150,5 @@ module.exports = {
     "space-in-parens": 1,
     "spaced-comment": 1,
     "unicode-bom": 2,
-    "wrap-regex": 1,
   }
 };

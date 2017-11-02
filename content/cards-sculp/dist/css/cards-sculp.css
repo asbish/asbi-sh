@@ -5,6 +5,7 @@
 .cards-sculp_img {
   display: inline-block;
   max-width: 100%;
+  padding-bottom: 159%;
 }
 
 .cards-sculp_img + .cards-sculp_img {

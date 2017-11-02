@@ -3,7 +3,8 @@ module.exports = {
   "env": {
     "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "ecmaFeatures": {
     "arrowFunctions": true,
@@ -16,11 +17,11 @@ module.exports = {
     "modules": true,
     "spread": true,
     "templateStrings": true,
+    "jsx": true
   },
   "rules": {
     "comma-dangle": 2,
     "no-cond-assign": 2,
-    "no-console": 2,
     "no-constant-condition": 2,
     "no-control-regex": 2,
     "no-debugger": 2,
@@ -43,15 +44,10 @@ module.exports = {
     "no-sparse-arrays": 2,
     "no-unreachable": 2,
     "use-isnan": 2,
-    "valid-jsdoc": [1, {"requireReturn": false,
-                        "requireParamDescription": false,
-                        "requireReturnDescription": false}],
+    "no-var": 2,
     "valid-typeof": 2,
     "no-unexpected-multiline": 2,
-
-    "block-scoped-var": 1,
     "complexity": 2,
-    "curly": 2,
     "dot-location": [1, "property"],
     "dot-notation": 2,
     "eqeqeq": 2,
@@ -96,16 +92,13 @@ module.exports = {
     "no-useless-concat": 2,
     "no-useless-escape": 2,
     "no-void": 2,
-    "no-warning-comments": 1,
+    "no-warning-comments": 0,
     "no-with": 2,
     "radix": 1,
-    "vars-on-top": 0,
     "wrap-iife": 2,
     "yoda": 2,
 
     "no-catch-shadow": 2,
-    "no-delete-var": 2,
-    "no-label-var": 1,
     "no-restricted-globals": 2,
     "no-shadow-restricted-names": 2,
     "no-shadow": 1,
@@ -113,10 +106,8 @@ module.exports = {
     "no-undef": 2,
     "no-undefined": 2,
     "no-unused-vars": 2,
-    "no-use-before-define": 0,
 
-    "callback-return": 2,
-    "handle-callback-err": 2,
+    "callback-return": 0,
     "no-mixed-requires": 1,
     "no-new-require": 1,
     "no-path-concat": 2,
@@ -133,7 +124,6 @@ module.exports = {
     "indent": [2, 2],
     "keyword-spacing": 1,
     "linebreak-style": 2,
-    "lines-around-comment": 0,
     "max-depth": [1, {max: 4}],
     "max-len": [2, {code: 78}],
     "max-nested-callbacks": [1, {max: 5}],
@@ -146,7 +136,6 @@ module.exports = {
     "no-new-object": 2,
     "no-spaced-func": 1,
     "no-trailing-spaces": 2,
-    "no-underscore-dangle": 0,
     "no-unneeded-ternary": 1,
     "no-whitespace-before-property": 2,
     "object-curly-spacing": [2, "never"],
@@ -161,6 +150,5 @@ module.exports = {
     "space-in-parens": 1,
     "spaced-comment": 1,
     "unicode-bom": 2,
-    "wrap-regex": 1,
   }
 };
