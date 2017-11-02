@@ -24,6 +24,13 @@ const browserSyncConfig = {
   },
 };
 
+function preserveLicense(node, comment) {
+  const text = comment.value;
+  if (comment.type === 'comment2') {
+    return /3rd party license information/i.test(text);
+  }
+}
+
 let production = false;
 let rebuild = false;
 
@@ -43,10 +50,13 @@ gulp.task('css', () => {
 gulp.task('js', async function() {
   let plugins = [
     commonjs(),
-    resolve(),
+    resolve({jsnext: true}),
     babel({exclude: 'node_modules/**'}),
   ];
-  if (production) plugins = [...plugins, uglify({}, minify)];
+  if (production) plugins = [
+    ...plugins,
+    uglify({output: {comments: preserveLicense}}, minify),
+  ];
   const bundle = await rollup({
     input: './src/js/main.js',
     plugins: plugins,

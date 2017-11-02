@@ -2,7 +2,7 @@
 
 export default () => {
   try {
-    var elem = document.createElement('canvas');
+    const elem = document.createElement('canvas');
     return !!(window.WebGLRenderingContext && elem.getContext('webgl'));
   } catch (e) {
     return false;
