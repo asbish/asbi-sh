@@ -15,6 +15,7 @@
 @media only screen and (min-width: 550px) {
   .cards-sculp_img {
     max-width: 49%;
+    padding-bottom: 78%;
   }
 
   .cards-sculp_img + .cards-sculp_img {
