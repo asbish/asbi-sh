@@ -8,12 +8,12 @@ body {
 }
 
 .robozilla-img {
+  margin-top: 16px;
   outline: none;
-  padding: 16px 16px 50%;
+  padding: 0 0 50%;
 }
 
 .robozilla-img img {
-  top: 16px;
   -ms-user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -32,7 +32,8 @@ body {
   }
 
   .robozilla-img {
-    padding: 0 0 50%;
+    margin: 0;
+    width: auto;
   }
 
   .robozilla-img img {
