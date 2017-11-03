@@ -9,7 +9,7 @@
   --contentMaxWidth: calc(var(--contentAsideWidth) + var(--contentWidth));
 }
 
-@custom-media --pcWidth only screen and (min-width: 48em);
+@custom-media --pcWidth only screen and (min-width: 49em);
 /* (- (+ 640 270 270) 22 22 22) */
 @custom-media --pcMaxWidth only screen and (min-width: 70em);
 
