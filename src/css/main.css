@@ -47,6 +47,7 @@ body {
 
   &[data-menu="opened"] {
     height: 100vh;
+    overflow-y: hidden;
   }
 }
 
@@ -358,10 +359,10 @@ button {
 main {
   box-sizing: content-box;
   display: flex;
-  flex-basis: 100%;
+  flex-basis: auto;
   flex-direction: column;
   flex-grow: 1;
-  flex-shrink: 1;
+  flex-shrink: 0;
   line-height: 1.5;
   max-width: 100%;
   min-width: 1px;
@@ -600,7 +601,9 @@ main {
   }
 
   main {
+    flex-basis: 100%;
     flex-grow: 0;
+    flex-shrink: 1;
     min-height: 100vh;
   }
 
