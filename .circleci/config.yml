@@ -19,7 +19,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - stack-cache-{{ checksum "asbi-sh.cabal" }}
+            - stack-cache-{{ checksum "stack.yaml" }}
 
       - run: yarn install
       - run: yarn lint
@@ -37,6 +37,6 @@ jobs:
       - save_cache:
           paths:
             - ~/.stack
-          key: stack-cache-{{ checksum "asbi-sh.cabal" }}
+          key: stack-cache-{{ checksum "stack.yaml" }}
 
       - run: firebase deploy --project "$FIREBASE_PROJECT" --token "$FIREBASE_TOKEN"
