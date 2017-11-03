@@ -9,7 +9,7 @@
     "start": "BABEL_ENV=default gulp",
     "build": "BABEL_ENV=default gulp build",
     "build-assets": "BABEL_ENV=default gulp build-assets",
-    "lint": "npm run lint-css & npm run lint-js",
+    "lint": "npm run lint-css && npm run lint-js",
     "lint-css": "stylelint \"src/css/**/*.css\"",
     "lint-js": "eslint \"src/js/**/*.js\""
   },
