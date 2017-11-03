@@ -148,7 +148,6 @@ module.exports = {
     "space-before-blocks": 1,
     "space-before-function-paren": [1, "never"],
     "space-in-parens": 1,
-    "spaced-comment": 1,
     "unicode-bom": 2,
   }
 };
