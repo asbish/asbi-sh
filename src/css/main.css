@@ -144,32 +144,42 @@ button {
   cursor: pointer;
   flex-grow: 0;
   flex-shrink: 0;
-  height: 34px;
-  margin: 12px 12px 4px;
+  height: 42px;
+  margin: 8px 8px 0;
+  opacity: .5;
   outline: 0;
-  padding: 4px;
+  padding: 8px;
   position: absolute;
   right: 0;
-  width: 34px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  width: 42px;
   z-index: 1000;
 
   & svg {
     fill: none;
-    opacity: .5;
     stroke: #000;
     stroke-linecap: round;
     stroke-miterlimit: 10;
-    stroke-width: 4px;
+    stroke-width: 2.2px;
+    transform: none;
   }
 
   @nest body[data-menu="opened"] & {
+    & svg {
+      transform: scale3d(.95,1,1);
+    }
+
     z-index: 2000;
   }
 
   /* same as .link_icohome before */
   /* TODO: https://discourse.wicg.io/t/needed-new-champion-for-css-apply-rule/2012/18 */
+
+  &:focus {
+    opacity: .85;
+  }
+
   &:before {
-    border-radius: 50%;
     bottom: 0;
     content: "";
     height: 100%;
@@ -177,8 +187,6 @@ button {
     position: absolute;
     right: 0;
     top: 0;
-    transform: scale(.8);
-    transition: 150ms;
     width: 100%;
   }
 
@@ -186,13 +194,8 @@ button {
     background-image: radial-gradient(
       circle farthest-corner,
       rgba(0,0,0,.2) 0,
-      transparent 65%
+      transparent 70%
     );
-  }
-
-  &:focus:before {
-      border: var(--defaultBorder);
-      transform: scale(1.1);
   }
 }
 
@@ -253,34 +256,31 @@ button {
 }
 
 .link_icohome {
-  background: inherit;
   cursor: pointer;
-  height: 34px;
+  height: 42px;
   left: 0;
-  margin: 12px 18px 4px;
+  margin: 8px 14px 0;
+  opacity: .5;
   outline: 0;
-  padding: 4px;
+  padding: 8px;
   position: absolute;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
   top: 0;
-  width: 34px;
+  width: 42px;
   z-index: 1600;
 
   & svg {
     fill: none;
-    opacity: .5;
     stroke:#000;
     stroke-miterlimit: 10;
     stroke-width: 1.3px;
   }
 
-  &:hover {
-    & svg {
-      opacity: .8;
-    }
+  &:hover, &:focus {
+    opacity: .85;
   }
 
   &:before {
-    border-radius: 50%;
     bottom: 0;
     content: "";
     height: 100%;
@@ -288,8 +288,6 @@ button {
     position: absolute;
     right: 0;
     top: 0;
-    transform: scale(.8);
-    transition: 150ms;
     width: 100%;
   }
 
@@ -297,13 +295,8 @@ button {
     background-image: radial-gradient(
       circle farthest-corner,
       rgba(0,0,0,.2) 0,
-      transparent 65%
+      transparent 70%
     );
-  }
-
-  &:focus:before {
-    border: var(--defaultBorder);
-    transform: scale(1.1);
   }
 }
 
