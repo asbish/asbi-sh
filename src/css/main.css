@@ -381,11 +381,10 @@ main {
 }
 
 .content_body {
-  border-top: var(--defaultBorder);
   position: relative;
 
   & > div:not(.plain) {
-    padding: 16px 16px 16px;
+    padding: 0 16px 16px;
     position: relative;
     text-align: justify;
     width: 100%;
@@ -607,6 +606,7 @@ main {
   }
 
   .content_body {
+    border-top: var(--defaultBorder);
     max-width: var(--contentMaxWidth);
     min-width: var(--contentWidth);
     padding: 32px 0 0;
