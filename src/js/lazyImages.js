@@ -22,13 +22,13 @@ function createLoadingDOM() {
   const rect = document.createElement('div');
   div.className = 'lazy-image_loading';
   rect.className = 'lazy-image_loading_rect';
-  for (let i = 1; i <= 6; ++i) { div.appendChild(rect.cloneNode(false)); }
+  for (let i = 0; i < 6; ++i) { div.appendChild(rect.cloneNode(false)); }
   loadingDOM = div;
 }
 
-function onload(el) {
-  el.setAttribute('data-src-state', 'loaded');
-  el.appendChild(this);
+function onload(elem) {
+  elem.setAttribute('data-src-state', 'loaded');
+  elem.appendChild(this);
 }
 
 function lazyImage(elem) {
@@ -52,7 +52,7 @@ function callLazyImage(entry, observer) {
   for (let i = 0; i < entry.length; ++i) {
     const elem = entry[i].target;
     lazyImage(elem);
-    if (observer) observer.unobserve(elem);
+    observer.unobserve(elem);
   }
 }
 
