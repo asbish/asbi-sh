@@ -15,7 +15,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import uglify from 'rollup-plugin-uglify';
 import {minify} from 'uglify-es';
 
-process.env.BABEL_ENV = 'umd';
+process.env.BABEL_ENV = 'rollup';
 
 const browserSync = BrowserSync.create();
 const browserSyncConfig = {
@@ -66,7 +66,7 @@ gulp.task('js', async function() {
   });
   return bundle.write({
     file: './static/js/main.js',
-    format: 'umd',
+    format: 'iife',
   });
 });
 

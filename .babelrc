@@ -11,7 +11,7 @@
         ]
       ]
     },
-    "umd": {
+    "rollup": {
       "plugins": ["external-helpers"],
       "presets": [
         [
