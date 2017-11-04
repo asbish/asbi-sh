@@ -3,7 +3,7 @@
     "public": "_site",
     "headers": [
       {
-        "source" : "**/*.@(jpg|jpeg|gif|png)",
+        "source" : "**/*.@(jpg|jpeg|gif|png|webp)",
         "headers" : [ {
           "key" : "Cache-Control",
           "value" : "max-age=15778800"
