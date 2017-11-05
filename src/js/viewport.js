@@ -1,5 +1,9 @@
 import 'intersection-observer';
 
+if (IntersectionObserver.prototype.POLL_INTERVAL === null) {
+  IntersectionObserver.prototype.POLL_INTERVAL = 200;
+}
+
 function observe(elems, cb, opt=Object.create(null)) {
   const observer = new IntersectionObserver(cb, opt);
   for (let i = 0; i < elems.length; ++i) {
