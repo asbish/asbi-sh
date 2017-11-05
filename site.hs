@@ -6,7 +6,7 @@ import           Control.Monad       (forM_)
 import qualified Data.HashMap.Strict as HMap
 import           Data.Map.Strict     (Map)
 import qualified Data.Map.Strict     as Map
-import           Data.Maybe          (fromMaybe)
+import           Data.Maybe          (fromMaybe, isJust)
 import           Data.Monoid         (mempty, (<>))
 import           System.Environment  (lookupEnv)
 import           Text.Regex.TDFA     (getAllTextSubmatches, (=~))
@@ -37,6 +37,8 @@ main = hakyll $ do
         compile copyFileCompiler
 
 
+    production <- preprocess $ isJust <$> lookupEnv "SITE_PRODUCTION"
+
     host <- preprocess $
         fromMaybe "https://www.asbi.sh" <$> lookupEnv "SITE_HOST"
 
@@ -52,6 +54,7 @@ main = hakyll $ do
             let ctx = includeCtx meta
                     <> contentsCtx contents idt
                     <> locationCtx ctMap host
+                    <> boolField "production" (const production)
                     <> defaultContext
             getResourceBody
                 >>= loadAndApplyTemplate "templates/default.html" ctx
@@ -64,6 +67,7 @@ main = hakyll $ do
             idt <- getUnderlying
             let ctx = contentsCtx contents idt
                     <> constField "loc" host
+                    <> boolField "production" (const production)
                     <> defaultContext
             getResourceBody
                 >>= loadAndApplyTemplate "templates/default.html" ctx
@@ -75,6 +79,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             let ctx = field "css" (const $ loadBody "static/inline/404.css")
+                    <> boolField "production" (const production)
             makeItem ("" :: String)
                 >>= loadAndApplyTemplate "templates/404.html" ctx
                 >>= relativizeUrlsNoIndex
