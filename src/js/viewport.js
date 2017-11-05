@@ -1,7 +1,7 @@
 import 'intersection-observer';
 
-function observe(elems, cb) {
-  const observer = new IntersectionObserver(cb);
+function observe(elems, cb, opt=Object.create(null)) {
+  const observer = new IntersectionObserver(cb, opt);
   for (let i = 0; i < elems.length; ++i) {
     observer.observe(elems[i]);
   }

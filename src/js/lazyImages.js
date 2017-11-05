@@ -50,9 +50,11 @@ function lazyImage(elem) {
 
 function callLazyImage(entry, observer) {
   for (let i = 0; i < entry.length; ++i) {
-    const elem = entry[i].target;
-    lazyImage(elem);
-    observer.unobserve(elem);
+    if (entry[i].intersectionRatio > 0) {
+      const elem = entry[i].target;
+      lazyImage(elem);
+      observer.unobserve(elem);
+    }
   }
 }
 
