@@ -6,7 +6,7 @@ import           Control.Monad       (forM_)
 import qualified Data.HashMap.Strict as HMap
 import           Data.Map.Strict     (Map)
 import qualified Data.Map.Strict     as Map
-import           Data.Maybe          (fromMaybe, isJust)
+import           Data.Maybe          (fromMaybe)
 import           Data.Monoid         (mempty, (<>))
 import           System.Environment  (lookupEnv)
 import           Text.Regex.TDFA     (getAllTextSubmatches, (=~))
@@ -37,7 +37,8 @@ main = hakyll $ do
         compile copyFileCompiler
 
 
-    production <- preprocess $ isJust <$> lookupEnv "SITE_PRODUCTION"
+    production <- preprocess $
+        maybe False (=="production") <$> lookupEnv "SITE_ENV"
 
     host <- preprocess $
         fromMaybe "https://www.asbi.sh" <$> lookupEnv "SITE_HOST"
