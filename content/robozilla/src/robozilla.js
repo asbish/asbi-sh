@@ -1,5 +1,4 @@
-'use strict';
-
+/* eslint-disabled import/no-unresolved */
 import {
   OrthographicCamera,
   Raycaster,
@@ -7,11 +6,10 @@ import {
   Vector2,
   WebGLRenderer,
 } from 'three';
-
-import Pendulum from './Pendulum.js';
-import detectCanvas from './detectCanvas.js';
-import deltaTime from './deltaTime.js';
-import {loadGeometry, loadTexture} from './loader.js';
+import Pendulum from './Pendulum';
+import detectCanvas from './detectCanvas';
+import deltaTime from './deltaTime';
+import { loadGeometry, loadTexture } from './loader';
 import robotJSON from '../assets/bob/robot.json';
 import robotTexture from '../assets/bob/robot-texture.jpg';
 import robotPartsJSON from '../assets/bob/robot-parts.json';
@@ -32,10 +30,44 @@ const camera = new OrthographicCamera(
 );
 const mouse = new Vector2();
 const raycaster = new Raycaster();
-const renderer = new WebGLRenderer({alpha: true});
+const renderer = new WebGLRenderer({ alpha: true });
 
 let pendulum;
 let timeout;
+
+function animate() {
+  pendulum.update(deltaTime());
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+
+function mouseDown(e) {
+  e.preventDefault();
+  const canvas = this.firstElementChild.getClientRects()[0];
+  if (e.clientX > canvas.left
+      && e.clientX < canvas.right
+      && e.clientY > canvas.top
+      && e.clientY < canvas.bottom) {
+    mouse.set(
+      (e.clientX - canvas.left) / width * 2 - 1,
+      -((e.clientY - canvas.top) / height) * 2 + 1,
+    );
+    raycaster.setFromCamera(mouse, camera);
+    if (raycaster.intersectObjects(Pendulum.getBob(scene)).length > 0) {
+      pendulum.reboot(1);
+    }
+  }
+}
+
+function resize() {
+  width = document.getElementById('robozilla-cntr').clientWidth;
+  camera.left = width / -2;
+  camera.right = width / 2;
+  camera.top = height / 2;
+  camera.bottom = height / -2;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
 
 if (detectCanvas()) {
   const random = Math.random() - 0.5;
@@ -44,7 +76,7 @@ if (detectCanvas()) {
     loadGeometry(robotJSON),
     loadTexture(robotTexture),
     loadGeometry(robotPartsJSON),
-  ]).then(x => {
+  ]).then((x) => {
     pendulum = new Pendulum(
       scene,
       x[0],
@@ -74,38 +106,4 @@ if (detectCanvas()) {
 } else {
   document.getElementById('robozilla-canvas')
     .textContent = "Your browser doesn't support.";
-}
-
-function animate() {
-  pendulum.update(deltaTime());
-  renderer.render(scene, camera);
-  requestAnimationFrame(animate);
-}
-
-function mouseDown(e) {
-  e.preventDefault();
-  const canvas = this.firstElementChild.getClientRects()[0];
-  if (e.clientX > canvas.left
-      && e.clientX < canvas.right
-      && e.clientY > canvas.top
-      && e.clientY < canvas.bottom) {
-    mouse.set(
-      (e.clientX - canvas.left) / width * 2 - 1,
-      - ((e.clientY - canvas.top) / height) * 2 + 1,
-    );
-    raycaster.setFromCamera(mouse, camera);
-    if (raycaster.intersectObjects(pendulum.getBob(scene)).length > 0) {
-      pendulum.reboot(1);
-    }
-  }
-}
-
-function resize() {
-  width = document.getElementById('robozilla-cntr').clientWidth;
-  camera.left = width / - 2;
-  camera.right = width / 2;
-  camera.top = height / 2;
-  camera.bottom = height / - 2;
-  camera.updateProjectionMatrix();
-  renderer.setSize(width, height);
 }
