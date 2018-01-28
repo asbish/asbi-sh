@@ -1,28 +1,13 @@
-import './3rdPartyLicense.js';
+import './3rdPartyLicense';
 import {
   toggleAttr,
   toggleStyle,
   toggleTabIndexes,
-} from './toggle.js';
-import {subscribeResize} from './viewport.js';
-import lazyImages from './lazyImages.js';
+} from './toggle';
+import { subscribeResize } from './viewport';
+import lazyImages from './lazyImages';
 
 let width = window.innerWidth;
-
-document.getElementById('ico-menu')
-  .addEventListener('mousedown', toggleMenu, false);
-
-document.getElementById('ico-menu').addEventListener('keydown', (e) => {
-  if (e.code !== 'Enter') return;
-  toggleMenu();
-}, false);
-
-document.getElementById('mask')
-  .addEventListener('mousedown', toggleMenu, false);
-
-subscribeResize(resize);
-
-lazyImages();
 
 function toggleMenu() {
   const body = document.getElementsByTagName('body')[0];
@@ -57,3 +42,18 @@ function resize() {
     }
   }
 }
+
+document.getElementById('ico-menu')
+  .addEventListener('mousedown', toggleMenu, false);
+
+document.getElementById('ico-menu').addEventListener('keydown', (e) => {
+  if (e.code !== 'Enter') return;
+  toggleMenu();
+}, false);
+
+document.getElementById('mask')
+  .addEventListener('mousedown', toggleMenu, false);
+
+subscribeResize(resize);
+
+lazyImages();
