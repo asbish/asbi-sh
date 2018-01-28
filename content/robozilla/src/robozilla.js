@@ -1,4 +1,3 @@
-/* eslint-disabled import/no-unresolved */
 import {
   OrthographicCamera,
   Raycaster,
