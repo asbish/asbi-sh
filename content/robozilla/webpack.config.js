@@ -44,7 +44,7 @@ module.exports = {
     three: 'THREE',
   },
   plugins: [
-    new ExtractTextPlugin({filename: 'css/[name].css'}),
-    new HTMLPlugin({inject: false, template: 'assets/index.html'}),
+    new ExtractTextPlugin({ filename: 'css/[name].css' }),
+    new HTMLPlugin({ inject: false, template: 'assets/index.html' }),
   ],
 };

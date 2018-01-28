@@ -1,5 +1,3 @@
-'use strict';
-
 import {
   Geometry,
   Group,
@@ -73,7 +71,7 @@ export default class Pendulum {
     this.maxE = null;
   }
 
-  getBob(scene) {
+  static getBob(scene) {
     return [scene.children[0].children[1]];
   }
 }
