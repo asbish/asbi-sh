@@ -1,5 +1,3 @@
-'use strict';
-
 export default () => {
   try {
     const elem = document.createElement('canvas');
