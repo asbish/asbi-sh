@@ -1,6 +1,4 @@
-'use strict';
-
-import {JSONLoader, TextureLoader} from 'three';
+import { JSONLoader, TextureLoader } from 'three';
 
 const jsonLoader = new JSONLoader();
 const textureLoader = new TextureLoader();

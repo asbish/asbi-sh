@@ -1,21 +1,17 @@
-'use strict';
-
-import gulp from 'gulp';
-import gutil from 'gulp-util';
-import {spawn} from 'child_process';
-import runSequence from 'run-sequence';
-import BrowserSync from 'browser-sync';
-import postcss from 'gulp-postcss';
-import cssnext from 'postcss-cssnext';
-import cssnano from 'cssnano';
-import {rollup} from 'rollup';
-import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
-import resolve from 'rollup-plugin-node-resolve';
-import uglify from 'rollup-plugin-uglify';
-import {minify} from 'uglify-es';
-
-process.env.BABEL_ENV = 'rollup';
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const { spawn } = require('child_process');
+const runSequence = require('run-sequence');
+const BrowserSync = require('browser-sync');
+const postcss = require('gulp-postcss');
+const cssnext = require('postcss-cssnext');
+const cssnano = require('cssnano');
+const { rollup } = require('rollup');
+const babel = require('rollup-plugin-babel');
+const commonjs = require('rollup-plugin-commonjs');
+const resolve = require('rollup-plugin-node-resolve');
+const uglify = require('rollup-plugin-uglify');
+const { minify } = require('uglify-es');
 
 const browserSync = BrowserSync.create();
 const browserSyncConfig = {
@@ -29,6 +25,7 @@ function preserveLicense(node, comment) {
   if (comment.type === 'comment2') {
     return /3rd party license information/i.test(text);
   }
+  return null;
 }
 
 let production = false;
@@ -37,6 +34,7 @@ let rebuild = false;
 gulp.task('css', () => {
   let plugins = [cssnext()];
   if (production) plugins = [...plugins, cssnano({preset: 'default'})];
+
   return gulp.src('./src/css/**/*.css')
     .pipe(postcss(plugins))
     .on('error', (err) => {
@@ -47,19 +45,21 @@ gulp.task('css', () => {
     .pipe(gulp.dest('./static/css'));
 });
 
-gulp.task('js', async function() {
+gulp.task('js', async () => {
   let plugins = [
     commonjs(),
-    resolve({jsnext: true}),
-    babel({exclude: 'node_modules/**'}),
+    resolve({ jsnext: true }),
+    babel({ exclude: 'node_modules/**' }),
   ];
-  if (production) plugins = [
-    ...plugins,
-    uglify({output: {comments: preserveLicense}}, minify),
-  ];
+  if (production) {
+    plugins = [
+      ...plugins,
+      uglify({ output: { comments: preserveLicense } }, minify),
+    ];
+  }
   const bundle = await rollup({
     input: './src/js/main.js',
-    plugins: plugins,
+    plugins,
   }).catch((err) => {
     browserSync.notify('js build failed');
     gutil.log(gutil.colors.red(err.message));
@@ -73,10 +73,10 @@ gulp.task('js', async function() {
 gulp.task('hakyll', (cb) => {
   const hakyll = spawn('stack', ['build']);
   let stderr = '';
-  hakyll.stderr.on('data', data => {
+  hakyll.stderr.on('data', (data) => {
     stderr += data.toString('utf8');
   });
-  return hakyll.on('close', statusCode => {
+  return hakyll.on('close', (statusCode) => {
     if (statusCode === 0) {
       rebuild = true;
       cb();
@@ -91,14 +91,14 @@ gulp.task('hakyll', (cb) => {
 
 gulp.task('site', (cb) => {
   const site = rebuild
-        ? spawn('stack', ['exec', 'site', 'rebuild'])
-        : spawn('stack', ['exec', 'site', 'build']);
+    ? spawn('stack', ['exec', 'site', 'rebuild'])
+    : spawn('stack', ['exec', 'site', 'build']);
   rebuild = false;
   let stderr = '';
-  site.stdout.on('data', data => {
+  site.stdout.on('data', (data) => {
     stderr += data.toString('utf8');
   });
-  return site.on('close', statusCode => {
+  return site.on('close', (statusCode) => {
     if (statusCode === 0) {
       browserSync.reload();
       cb();

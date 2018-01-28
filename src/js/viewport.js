@@ -4,7 +4,7 @@ if (IntersectionObserver.prototype.POLL_INTERVAL === null) {
   IntersectionObserver.prototype.POLL_INTERVAL = 200;
 }
 
-function observe(elems, cb, opt=Object.create(null)) {
+function observe(elems, cb, opt = {}) {
   const observer = new IntersectionObserver(cb, opt);
   for (let i = 0; i < elems.length; ++i) {
     observer.observe(elems[i]);
@@ -37,7 +37,7 @@ function unsubscribeResize(cb) {
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(call(resizeCbs), 200);
-}, {passive: true});
+}, { passive: true });
 
 export {
   observe,

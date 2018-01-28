@@ -13,7 +13,7 @@
  */
 
 import supportsWebP from 'supports-webp';
-import {observe} from './viewport.js';
+import { observe } from './viewport';
 
 let loadingDOM;
 
@@ -37,8 +37,7 @@ function lazyImage(elem) {
   elem.appendChild(loadingDOM.cloneNode(true));
 
   const img = new Image();
-  const alt = elem.getAttribute('data-alt');
-  img.alt = alt ? alt : '';
+  img.alt = elem.getAttribute('data-alt') || '';
   const srcWebP = elem.getAttribute('data-src-webp');
   if (supportsWebP && srcWebP) {
     img.src = srcWebP;
