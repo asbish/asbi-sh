@@ -33,7 +33,7 @@ let rebuild = false;
 
 gulp.task('css', () => {
   let plugins = [cssnext()];
-  if (production) plugins = [...plugins, cssnano({preset: 'default'})];
+  if (production) plugins = [...plugins, cssnano({ preset: 'default' })];
 
   return gulp.src('./src/css/**/*.css')
     .pipe(postcss(plugins))

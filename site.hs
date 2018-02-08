@@ -38,7 +38,7 @@ main = hakyll $ do
 
 
     production <- preprocess $
-        maybe False (=="production") <$> lookupEnv "SITE_ENV"
+        (== Just "production") <$> lookupEnv "SITE_ENV"
 
     host <- preprocess $
         fromMaybe "https://www.asbi.sh" <$> lookupEnv "SITE_HOST"
