@@ -40,7 +40,7 @@ main = hakyll $ do
     production <- preprocess $
         (== Just "production") <$> lookupEnv "SITE_ENV"
 
-    host <- preprocess $
+    hostname <- preprocess $
         fromMaybe "https://www.asbi.sh" <$> lookupEnv "SITE_HOST"
 
 
@@ -54,7 +54,7 @@ main = hakyll $ do
             meta <- getMetadata idt
             let ctx = includeCtx meta
                     <> contentsCtx contents idt
-                    <> locationCtx ctMap host
+                    <> locationCtx ctMap hostname
                     <> boolField "production" (const production)
                     <> defaultContext
             getResourceBody
@@ -67,7 +67,7 @@ main = hakyll $ do
         compile $ do
             idt <- getUnderlying
             let ctx = contentsCtx contents idt
-                    <> constField "loc" host
+                    <> constField "loc" hostname
                     <> boolField "production" (const production)
                     <> defaultContext
             getResourceBody
@@ -89,7 +89,7 @@ main = hakyll $ do
     create ["sitemap.xml"] $ do
         route idRoute
         compile $ do
-            let ctx = sitemapCtx contents host
+            let ctx = sitemapCtx contents hostname
             makeItem ("" :: String)
                 >>= loadAndApplyTemplate "templates/sitemap.xml" ctx
 
@@ -145,9 +145,10 @@ includeCtx meta = mkCtx "styles" "style" <> mkCtx "scripts" "script"
 
 
 sitemapCtx :: Contents -> String -> Context String
-sitemapCtx (ctMap, ctItems) host = listField "contents" ctx $ return ctItems'
+sitemapCtx (ctMap, ctItems) hostname =
+    listField "contents" ctx $ return ctItems'
   where
-    ctx = locationCtx ctMap' host
+    ctx = locationCtx ctMap' hostname
         <> metadataField
         <> dateField "lastmod" "%Y-%m-%d"
 
@@ -159,9 +160,9 @@ sitemapCtx (ctMap, ctItems) host = listField "contents" ctx $ return ctItems'
 
 
 locationCtx :: Map Identifier String -> String -> Context String
-locationCtx ctMap host = field "loc" $ return . loc
+locationCtx ctMap hostname = field "loc" $ return . loc
   where
-    loc = (host++) . replaceIdx . ("/"++) . (Map.!) ctMap . itemIdentifier
+    loc = (hostname++) . replaceIdx . ("/"++) . (Map.!) ctMap . itemIdentifier
 
 
 relativizeUrlsNoIndex :: Item String -> Compiler (Item String)
