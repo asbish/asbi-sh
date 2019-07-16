@@ -26,7 +26,7 @@ jobs:
       - run: yarn build-assets
 
       - run: stack setup
-      - run: stack build
+      - run: stack build --only-dependencies -j1
       - run: stack exec site build
 
       - save_cache:
