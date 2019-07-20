@@ -1,5 +1,5 @@
 name:               asbi-sh
-version:            0.1.1.0
+version:            0.2.0.0
 synopsis:           Website for asbi.sh
 description:        Please see README.md
 license-file:       LICENSE
@@ -13,7 +13,7 @@ executable site
   ghc-options:      -threaded -Wall -fwarn-tabs
   default-language: Haskell2010
   build-depends:    base == 4.*
-                  , hakyll
+                  , hakyll == 4.12.5.2
                   , containers
                   , regex-tdfa
                   , unordered-containers

@@ -1,2 +1,3 @@
-<link rel="stylesheet" href="/css/main.css" />
-$if(styles)$$for(styles)$<link rel="stylesheet" href=$style$ />$endfor$$endif$
+<link rel="stylesheet" href="/main.css" />
+$if(styles)$$for(styles)$<link rel="stylesheet" href="$style$" />$endfor$$endif$
+$for(inline_styles)$<style>$style$</style>$endfor$
