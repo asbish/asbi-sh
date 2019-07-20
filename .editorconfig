@@ -1,46 +1,32 @@
-[*.hs]
+root = true
+
+[*]
 charset = utf-8
 end_of_line = lf
+trim_trailing_whitespace = true
+
+[*.hs]
 indent_size = 4
 indent_style = space
 insert_final_newline = true
-max_line_length = 78
-trim_trailing_whitespace = true
+max_line_length = 80
 
 [*.js]
-charset = utf-8
-end_of_line = lf
 indent_size = 2
 indent_style = space
 insert_final_newline = true
-max_line_length = 78
-trim_trailing_whitespace = true
+max_line_length = 80
 
 [*.css]
-charset = utf-8
-end_of_line = lf
 indent_size = 2
 indent_style = space
 insert_final_newline = true
-trim_trailing_whitespace = true
 
 [*.md]
-charset = utf-8
-end_of_line = lf
 indent_style = space
 insert_final_newline = true
-max_line_length = 0
-trim_trailing_whitespace = false
 
 [*.json]
-charset = utf-8
-end_of_line = lf
 indent_size = 2
 indent_style = space
 insert_final_newline = true
-trim_trailing_whitespace = true
-
-[.babelrc]
-charset = utf-8
-indent_size = 2
-indent_style = space

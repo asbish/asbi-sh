@@ -1,11 +1,8 @@
-.firebaserc
-.envrc
 .tern-port
+.firebase/
+.envrc
 .stack-work/
-*.log
 _site/
 _cache/
+*.log
 TAGS
-node_modules/
-static/js/
-static/css/
