@@ -12,4 +12,4 @@ Finally, I've selected [Preact](https://preactjs.com/). It's an extremely tiny l
 
 Sometimes what's I did is called “Reinventing the wheel”. If a project has anything that needs prioritizing or implementing much more features on gesture actions, I will make different choices. But this time, I think I did it right and that it's challenging to select from among many options in these 'modern web front-end' days.
 
-The full code for the gallery is available here.
+The full code for the gallery is available [here](https://github.com/asbish/asbi-sh/tree/master/page/pictures).
