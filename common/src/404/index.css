@@ -1,0 +1,40 @@
+html {
+  font-size: 16px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--baseColor);
+  box-sizing: border-box;
+  color: #000;
+  font-family: 'Open Sans', system-ui;
+  text-align: center;
+}
+
+div {
+  box-sizing: border-box;
+  margin: 48px auto;
+  width: var(--minimumDisplayWidth);
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+img {
+  display: block;
+  height: 240px;
+  margin: 0 auto;
+  vertical-align: top;
+  width: 240px;
+}
+
+footer {
+  box-sizing: border-box;
+  color: #666;
+  font-size: 12px;
+  margin: 0 auto;
+  width: var(--minimumDisplayWidth);
+}

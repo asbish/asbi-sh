@@ -1,0 +1,12 @@
+{
+  "name": "home",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node -r shared/build/ts-node.js build.ts",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "shared": "0.0.0"
+  }
+}

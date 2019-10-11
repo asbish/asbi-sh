@@ -1,48 +1,126 @@
-<!doctype html>
-<html lang="en-US">
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
     <title>$title$ | asbi.sh</title>
-    $partial("templates/seo.html")$
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico" />
     $partial("templates/styles-list.html")$
+    $partial("templates/scripts-list.html")$
   </head>
-  <body id="body">
+  <body>
     <header class="header">
-      <div class="mask" id="mask"></div>
-      <a class="logo" id="logo" href="/" aria-label="asbi.sh Home" aria-hidden="false">
-        <svg class="logo-svg" viewBox="0 0 48 26" focusable="false" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%;pointer-events:none;"><g><path d="M39,19.91H27.4V0h2.4V6.63H39Zm-9.2-2.4h6.8V9H29.8Z"/><rect x="42.21" y="4.94" width="2.4" height="14.96"/><path d="M22.65,4.94,12.49,17.52v2.39H25v-15Zm0,12.56H15.5L22.6,9Z"/><path d="M11.6,19.91H0v-9.2H9.2V9H0V6.63H11.6Zm-9.2-2.4H9.2v-4.4H2.4Z"/></g></svg>
-      </a>
-      <h1 class="heading">$title$</h1>
+      <div class="mask" id="mask" role="presentation"></div>
+      <div class="logo">
+        <a
+            class="logo-anchor"
+            href="/"
+            aria-label="asbi.sh Home"
+            aria-hidden="false"
+            tabindex="0"
+        >
+          <svg
+              class="logo-svg"
+              viewBox="0 0 54 34"
+              focusable="false"
+              preserveAspectRatio="xMidYMid meet"
+          >
+            <path d="M43.71,26.71h-13V4.34H33.4V11.8H43.71ZM33.4,24H41v-9.5H33.4Z"/>
+            <rect x="47.31" y="9.91" width="2.69" height="16.8"/>
+            <path d="M25.39,9.91,14,24v2.71H28V9.91ZM25.33,24h-8l8-9.52Z"/>
+            <path d="M13,26.71H0V16.37H10.32V14.49H0V11.8H13ZM2.7,24h7.62V19.06H2.7Z"/>
+            <rect class="logo-svg-underline" fill="transparent" y="28.85" width="50" height="2"/>
+          </svg>
+        </a>
+      </div>
       <button class="guide" id="guide" aria-label="Guide" aria-pressed="false">
-        <svg class="guide-svg" viewBox="0 0 26 26" focusable="false" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%;pointer-events:none;"><g><line x1="3.75" y1="4.99" x2="22.25" y2="4.99"/><line x1="3.75" y1="13" x2="22.25" y2="13"/><line x1="3.75" y1="21.01" x2="22.25" y2="21.01"/></g></svg>
+        <svg
+          class="guide-svg"
+          viewBox="0 0 26 26"
+          focusable="false"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <line x1="2" y1="4.99" x2="24" y2="4.99" />
+          <line x1="2" y1="13" x2="24" y2="13" />
+          <line x1="2" y1="21.01" x2="24" y2="21.01" />
+        </svg>
       </button>
-      <div class="menu" id="menu">
-        <div class="menu-link-container">
-          <div class="menu-link">
-            <a class="menu-link-home" href="/" aria-label="asbi.sh Home">
-              <svg class="menu-link-home-svg" viewBox="0 0 26 26" focusable="false" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:100%;pointer-events:none;"><path class="a" d="M12.37,3.43l-9.9,6.84a1.1,1.1,0,0,0-.47.91v.52a1.1,1.1,0,0,0,1.1,1.1h.3a1.1,1.1,0,0,1,1.1,1.1v8A1.1,1.1,0,0,0,5.6,23H9.4a1.1,1.1,0,0,0,1.1-1.1V17.1A1.1,1.1,0,0,1,11.6,16h2.8a1.1,1.1,0,0,1,1.1,1.1v4.8A1.1,1.1,0,0,0,16.6,23h3.8a1.1,1.1,0,0,0,1.1-1.1v-8a1.1,1.1,0,0,1,1.1-1.1h.3A1.1,1.1,0,0,0,24,11.7v-.52a1.1,1.1,0,0,0-.47-.91l-9.9-6.84A1.1,1.1,0,0,0,12.37,3.43Z"/></svg>
-            </a>
-            <ul class="menu-link-pages">
-              $for(page_contents)$<li class="menu-link-pages-item">$if(link)$<a class="menu-link-pages-item-a" href="$link$">$title$</a>$else$<a>$title$</a>$endif$</li>$endfor$
-            </ul>
-            <ul class="menu-link-external">
-              <li class="menu-link-external-item">
-                <a class="menu-link-external-item-a" href="https://github.com/asbish">Github</a>
-              </li>
-            </ul>
+      <div class="menu" id="menu" role="menu" aria-label="Menu">
+        <div class="menu-container">
+          <div class="menu-link-container">
+            <div class="menu-home">
+              <a
+                class="menu-home-anchor"
+                href="/"
+                aria-label="Home"
+                role="menuitem"
+              >
+                <svg
+                  class="menu-home-svg"
+                  viewBox="0 0 26 26"
+                  focusable="false"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <path d="M12.37,3.43l-9.9,6.84a1.1,1.1,0,0,0-.47.91v.52a1.1,1.1,0,0,0,1.1,1.1h.3a1.1,1.1,0,0,1,1.1,1.1v8A1.1,1.1,0,0,0,5.6,23H9.4a1.1,1.1,0,0,0,1.1-1.1V17.1A1.1,1.1,0,0,1,11.6,16h2.8a1.1,1.1,0,0,1,1.1,1.1v4.8A1.1,1.1,0,0,0,16.6,23h3.8a1.1,1.1,0,0,0,1.1-1.1v-8a1.1,1.1,0,0,1,1.1-1.1h.3A1.1,1.1,0,0,0,24,11.7v-.52a1.1,1.1,0,0,0-.47-.91l-9.9-6.84A1.1,1.1,0,0,0,12.37,3.43Z" />
+                </svg>
+              </a>
+            </div>
+            <div class="menu-category">
+              <div class="menu-category-title">BLOG</div>
+              <ul class="menu-entries-indented">
+                $for(blog-entries)$
+                <li class="menu-entry">
+                  $if(current)$
+                  <a
+                    class="menu-entry-anchor"
+                    href="$url$"
+                    role="menuitem"
+                    aria-current="page"
+                  >
+                    $title$
+                  </a>
+                  $else$
+                  <a class="menu-entry-anchor" href="$url$" role="menuitem">
+                    $title$
+                  </a>
+                  $endif$
+                </li>
+                $endfor$
+              </ul>
+            </div>
+            <div class="menu-category">
+              <ul class="menu-entries">
+                $for(page-entries)$$if(nomenu)$$else$
+                <li class="menu-entry">
+                  $if(current)$
+                  <a
+                    class="menu-entry-anchor"
+                    href="$url$"
+                    role="menuitem"
+                    aria-current="page"
+                  >
+                    $title$
+                  </a>
+                  $else$
+                  <a class="menu-entry-anchor" href="$url$" role="menuitem">
+                    $title$
+                  </a>
+                  $endif$
+                </li>
+                $endif$$endfor$
+              </ul>
+            </div>
           </div>
-          <div class="copyright">&copy; 2017-2019 asbish</div>
+          <div class="menu-copyright">&copy; 2017 asbish</div>
         </div>
       </div>
     </header>
-    <main id="main" role="main" aria-hidden="false">
+    <main id="main" role="main">
+      <div class="title"><h1 class="title-heading">$title$</h1></div>
       <div class="content" id="content">$body$</div>
     </main>
-    $partial("templates/scripts-list.html")$
   </body>
 </html>

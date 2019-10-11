@@ -1,0 +1,106 @@
+.grid {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0 0 42px;
+}
+
+.item {
+  align-items: center;
+  border-bottom: 1px solid #262626;
+  border-left: 1px solid #262626;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 2px;
+  position: relative;
+  width: 50%;
+}
+
+.pad {
+  composes: item;
+}
+
+.padCol2 {
+  composes: pad;
+}
+
+.padCol3 {
+  composes: pad;
+  display: none;
+}
+
+.itemButton {
+  -webkit-appearance: button;
+  background: transparent;
+  border: none;
+  border: 8px solid var(--baseColor);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:focus {
+    & > .itemOverlay {
+      opacity: 0.2;
+      z-index: 0;
+    }
+  }
+}
+
+/* stylelint-disable no-descending-specificity */
+.itemOverlay {
+  background: #262626;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition-duration: 0.1s;
+  transition-property: opacity;
+  transition-timing-function: ease-in;
+  z-index: -1;
+}
+/* stylelint-enable */
+
+.itemThumb {
+  max-height: 100%;
+  max-width: 100%;
+  opacity: 1;
+  transition-duration: 0.25s;
+  transition-property: opacity;
+  transition-timing-function: ease-in;
+  vertical-align: top;
+}
+
+.itemThumbLoading {
+  composes: itemThumb;
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media only screen and (min-width: 1200px) {
+  .item {
+    width: 33.333%;
+  }
+
+  .padCol2 {
+    display: none;
+  }
+
+  .padCol3 {
+    display: block;
+  }
+}

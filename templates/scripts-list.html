@@ -1,3 +1,14 @@
-<script src="/main.js"></script>
-$if(scripts)$$for(scripts)$<script src=$script$></script>$endfor$$endif$
-$if(inline_scripts)$$for(inline_scripts)$<script>$script$</script>$endfor$$endif$
+<script src="$global-js$"></script>
+$if(blog)$<script src="$blog-js$" defer></script>$endif$
+$if(scripts)$$for(scripts)$
+<script
+  src="$src$"
+    $if(integrity)$integrity="$integrity$"$endif$
+    $if(crossorigin)$crossorigin="$crossorigin$"$endif$
+    $if(async)$async$endif$
+    $if(defer)$defer$endif$
+></script>
+$endfor$$endif$
+$if(inline-scripts)$$for(inline-scripts)$
+<script>$script-body$</script>
+$endfor$$endif$

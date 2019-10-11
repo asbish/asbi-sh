@@ -1,8 +1,11 @@
-.tern-port
-.firebase/
 .envrc
+.firebase/
 .stack-work/
 _site/
 _cache/
-*.log
-TAGS
+**/node_modules
+**/dist
+**/*.log
+**/.dir-locals.el
+**/.tern-port
+**/.rpt2_cache

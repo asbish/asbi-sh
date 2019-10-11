@@ -1,0 +1,141 @@
+.blog {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 48px 0;
+  padding: 0;
+  width: 100%;
+}
+
+.blog-background {
+  box-sizing: border-box;
+  height: 100vh;
+  left: 0;
+  margin: auto;
+  max-width: 1652px;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.blog-contents {
+  width: 100%;
+  z-index: 20;
+}
+
+.blog-info {
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 0 0 20px;
+}
+
+.blog-body {
+  border-top: 1px solid #000;
+  box-sizing: border-box;
+  padding: 42px 0 0;
+
+  & h2 {
+    font-size: 1.4em;
+    letter-spacing: 0.01em;
+    margin: 0 0 24px;
+    padding: 0;
+    position: relative;
+  }
+
+  & * + h2 {
+    margin-top: 24px;
+    padding-top: 24px;
+  }
+
+  & div,
+  & p {
+    margin: 0 0 24px;
+    padding: 0;
+  }
+
+  & ul {
+    display: block;
+    margin: 0 0 24px;
+    padding: 16px 0 16px 48px;
+  }
+
+  & li {
+    margin: 0;
+    padding: 0;
+  }
+
+  & li + li {
+    margin-top: 16px;
+  }
+
+  & blockquote {
+    background: rgba(255, 255, 255, 0.6);
+    border-left: 8px solid #262626;
+    box-shadow: 0 0 16px var(--baseColor) inset;
+    margin: 0 0 24px;
+    padding: 24px 16px 1px; /* To contains child margin */
+  }
+}
+
+div.sourceCode {
+  background: #262626;
+  color: #fff;
+  font-family: monospace;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+  margin: 24px 0;
+  padding: 0;
+  width: 100%;
+}
+
+pre.sourceCode {
+  margin: 0;
+  overflow-x: auto;
+  padding: 24px;
+
+  & a:active,
+  & a:hover {
+    text-decoration: none;
+  }
+}
+
+.sourceLine {
+  & .kw,
+  & .cf {
+    color: #d7afd7;
+  }
+
+  & .st {
+    color: #d7af00;
+  }
+
+  & .sc {
+    color: #d7af00;
+    font-weight: bold;
+  }
+
+  & .fu,
+  & .at {
+    color: #add8e6;
+    font-weight: bold;
+  }
+
+  & .va {
+    color: #afd7af;
+    font-weight: bold;
+  }
+
+  & .ot,
+  & .dt {
+    color: #d7d75f;
+  }
+
+  & .pp {
+    color: #afafd7;
+  }
+
+  & .co {
+    color: #8a8a8a;
+  }
+}
