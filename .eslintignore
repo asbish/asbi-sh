@@ -1,0 +1,5 @@
+**/node_modules/**
+**/dist/**
+_cache/**
+_site/**
+shared/**/*.d.ts

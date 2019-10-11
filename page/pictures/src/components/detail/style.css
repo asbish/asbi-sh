@@ -1,0 +1,306 @@
+.detail {
+  /* Set negative margin for zoom */
+  box-sizing: border-box;
+  margin: var(--negContentTopMargin) var(--negContentSideMargin) 0;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: var(--contentTopMargin) var(--contentSideMargin) 0;
+  position: relative;
+}
+
+.head {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 48px;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+@keyframes text-flow {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    visibility: visible;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+.title {
+  animation: text-flow 0.4s;
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  font-size: 2.2rem;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+}
+
+.close {
+  -webkit-appearance: button;
+  background: transparent;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 34px;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 34px;
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:focus {
+    background: rgba(38, 38, 38, 0.2);
+    border-right: 1px solid #262626;
+    border-top: 1px solid #262626;
+  }
+}
+
+@keyframes close-flow {
+  /* NOTE: IE11 doesn't support stroke-dashoffset in @keyframes. */
+  0% {
+    stroke-dashoffset: 40;
+    visibility: visible;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    visibility: visible;
+  }
+}
+
+.closeSVG {
+  fill: none;
+  height: 100%;
+  pointer-events: none;
+  stroke: #262626;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 0;
+  stroke-miterlimit: 10;
+  stroke-width: 1px;
+  visibility: hidden; /* For animation delay */
+  width: 100%;
+}
+
+.closeSVGLine1 {
+  animation: close-flow 0.12s linear 0.62s 1 normal forwards;
+}
+
+.closeSVGLine2 {
+  animation: close-flow 0.12s linear 0.5s 1 normal forwards;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 4px;
+  width: 100%;
+  z-index: 10;
+}
+
+.descriptionText {
+  animation: text-flow 0.4s;
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  margin: 0;
+  padding: var(--textLineMargin) 0;
+  visibility: hidden;
+}
+
+/* carousel.tsx */
+.carousel {
+  margin: 42px 0 0;
+  max-width: 540px;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+.carouselInfo {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 32px;
+  left: var(--negContentSideMargin);
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: -42px;
+  width: calc(100% + var(--contentSideMargin));
+}
+
+@keyframes border-flow {
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 100%;
+  }
+}
+
+.carouselBorder {
+  animation: border-flow 0.3s;
+  animation-iteration-count: 1;
+  background: #262626;
+  display: block;
+  flex-basis: 100%;
+  height: 1px;
+}
+
+@keyframes counter-flow {
+  from {
+    opacity: 0;
+    visibility: visible;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.carouselCounter {
+  animation: counter-flow 0.1s;
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  color: #000;
+  flex-shrink: 0;
+  font-size: 16px;
+  line-height: 1;
+  margin: 0;
+  padding: 0 0 0 8px;
+  position: right;
+  visibility: hidden;
+}
+
+.carouselNav {
+  -webkit-appearance: button;
+  background: transparent;
+  border: none;
+  bottom: 0;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  top: 0;
+  width: 15%;
+  z-index: 200;
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:disabled {
+    visibility: hidden;
+  }
+}
+
+.carouselNavPrev {
+  composes: carouselNav;
+  left: 0;
+}
+
+.carouselNavNext {
+  composes: carouselNav;
+  right: 0;
+}
+
+.image {
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition-duration: 0.2s;
+  transition-property: transform;
+  width: 100%;
+
+  &:-moz-loading {
+    color: transparent;
+  }
+}
+
+/* NOTE: min-width === .images.max-width  */
+@media only screen and (min-width: 540px) {
+  .detail {
+    padding-bottom: 24px;
+  }
+
+  .content {
+    flex-direction: row;
+  }
+
+  .description {
+    background: var(--baseColor);
+    flex-shrink: 2;
+    margin: 0 var(--negContentSideMargin) 0 var(--contentSideMargin);
+    padding: 42px var(--contentSideMargin) 0 0;
+  }
+
+  .descriptionText {
+    padding: 0;
+  }
+}
+
+@media (--fixedMenuDisplay) {
+  .detail {
+    margin: var(--negContentTopMargin) var(--negContentSideMarginX2) 0;
+    padding: var(--contentTopMargin) var(--contentSideMarginX2) 48px;
+  }
+
+  .description {
+    margin: 0 var(--negContentSideMarginX2) 0 var(--contentSideMarginX2);
+    padding: 42px var(--contentSideMarginX2) 0 0;
+  }
+
+  .carouselInfo {
+    left: var(--negContentSideMarginX2);
+    width: calc(100% + var(--contentSideMarginX2));
+  }
+
+  .carouselNav {
+    width: 34%;
+
+    &:before {
+      color: #262626;
+      font-size: 24px;
+      position: absolute;
+    }
+  }
+
+  .carouselNavPrev {
+    left: var(--negContentSideMarginX2);
+
+    &:focus:before,
+    &:hover:before {
+      content: '-';
+      left: 0;
+      width: var(--contentSideMarginX2);
+    }
+  }
+
+  .carouselNavNext {
+    right: var(--negContentSideMarginX2);
+
+    &:focus:before,
+    &:hover:before {
+      content: '+';
+      right: 0;
+      width: var(--contentSideMarginX2);
+    }
+  }
+}

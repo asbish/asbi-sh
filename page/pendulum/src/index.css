@@ -1,0 +1,88 @@
+.pendulum-cntr {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.pendulum-render {
+  border: 1px solid #bbbbbb;
+  box-sizing: border-box;
+  display: block;
+  flex-shrink: 0;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 100%;
+}
+
+.pendulum-banner {
+  align-items: center;
+  bottom: -20px;
+  display: flex;
+  font-size: 14px;
+  height: 20px;
+  justify-content: center;
+  left: 0;
+  margin: auto 0;
+  padding: 0 4px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition-duration: 0.15s;
+  transition-property: bottom visibility;
+  transition-timing-function: ease-in;
+  visibility: hidden;
+}
+
+.pendulum-banner--open {
+  bottom: 0;
+  visibility: visible;
+}
+
+.pendulum-select {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 16px 8px 8px;
+  width: 100%;
+}
+
+.pendulum-select-button {
+  -webkit-appearance: button;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  height: 72px;
+  margin: 0 8px 8px 8px;
+  padding: 0;
+  width: 72px;
+}
+
+.pendulum-select-button-ico {
+  height: 100%;
+  vertical-align: top;
+  width: 100%;
+}
+
+@media (--fixedMenuDisplay) {
+  .pendulum-cntr {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+
+  .pendulum-render {
+    width: 640px;
+  }
+
+  .pendulum-select {
+    justify-content: flex-start;
+    padding: 0 8px;
+  }
+}

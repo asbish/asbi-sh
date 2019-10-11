@@ -1,0 +1,18 @@
+{
+  "name": "common",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm run clean && node -r shared/build/ts-node.js build.ts",
+    "build-dev": "NODE_ENV=development node -r shared/build/ts-node.js build.ts",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "es6-promise": "4.2.8",
+    "intersection-observer": "^0.7.0",
+    "supports-webp": "2.0.1"
+  },
+  "devDependencies": {
+    "shared": "0.0.0"
+  }
+}

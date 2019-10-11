@@ -1,0 +1,59 @@
+.curtain {
+  background: transparent;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.dark {
+  background: #c7c7c7;
+  height: 100%;
+  opacity: 0;
+  transition-delay: 0s;
+  transition-duration: 0.42s;
+  transition-property: opacity;
+  transition-timing-function: ease-out;
+  width: 100%;
+}
+
+.darkToFill {
+  composes: dark;
+  opacity: 1;
+}
+
+.light {
+  background: var(--baseColor);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-property: width;
+  transition-timing-function: ease-in-out;
+  width: 0;
+}
+
+.lightToFill {
+  composes: light;
+  transition-delay: 0.15s;
+  transition-duration: 0.28s;
+  width: 100%;
+}
+
+@media (--fixedMenuDisplay) {
+  .light {
+    opacity: 0;
+    transition-property: opacity;
+    width: 100%;
+  }
+
+  .lightToFill {
+    composes: light;
+    opacity: 1;
+  }
+}

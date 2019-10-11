@@ -1,3 +1,13 @@
-<link rel="stylesheet" href="/main.css" />
-$if(styles)$$for(styles)$<link rel="stylesheet" href="$style$" />$endfor$$endif$
-$for(inline_styles)$<style>$style$</style>$endfor$
+<link rel="stylesheet" href="$global-css$" />
+$if(blog)$<link rel="stylesheet" href="$blog-css$" />$endif$
+$if(styles)$$for(styles)$
+<link
+  rel="stylesheet"
+  href="$href$"
+  $if(crossorigin)$crossorigin="$crossorigin$"
+  $endif$
+/>
+$endfor$$endif$
+$if(inline-styles)$$for(inline-styles)$
+<style>$style-body$</style>
+$endfor$$endif$

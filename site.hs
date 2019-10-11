@@ -1,12 +1,22 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE NamedFieldPuns    #-}
+{-# LANGUAGE TupleSections     #-}
 
-import           Control.Applicative (empty)
+import           Control.Applicative (empty, liftA2)
+import           Control.Monad       (forM_)
+import qualified Data.HashMap.Strict as HMap
 import           Data.Map.Strict     (Map)
 import qualified Data.Map.Strict     as Map
-import           Data.Maybe          (fromMaybe)
-import           Data.Monoid         (mempty, (<>))
+import           Data.Maybe          (fromMaybe, mapMaybe)
+import           Data.Text           (Text)
+import qualified Data.Text           as T
+import qualified Data.Vector         as V
+import qualified Data.Yaml           as Yaml
 import           System.Environment  (lookupEnv)
+import           System.FilePath     (replaceExtension)
+import           Text.Pandoc         (Pandoc (..))
+import qualified Text.Pandoc         as Pandoc
+import           Text.Pandoc.Walk    (walk)
 import           Text.Regex.TDFA     (getAllTextSubmatches, (=~))
 
 import           Hakyll
@@ -15,171 +25,305 @@ import           Hakyll
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyllWith config $ do
-    production <- preprocess $
-        (== Just "production") <$> lookupEnv "SITE_ENV"
-
     hostname <- preprocess $
         fromMaybe "https://www.asbi.sh" <$> lookupEnv "SITE_HOST"
 
 
     match "templates/*" $ compile templateBodyCompiler
 
-
-    -- | Grobal assets
-    match "contents/global/dist/**" $ do
-        route $ gsubRoute "contents/global/dist/" (const "")
+    match "static/**" $ do
+        route $ gsubRoute "static/" (const "")
         compile copyFileCompiler
 
 
-    -- | 404
-    match "contents/404/dist/*" $
-        compile $ getResourceString >>= saveSnapshot "404-inlines"
+    -- | Common
+    match "common/dist/404*" $
+        compile $ getResourceString >>= saveSnapshot "404Inlines"
 
     create ["404.html"] $ do
         route idRoute
         compile $ do
-            let ctx = boolField "production" (const production)
-                    <> inlineContext
-                         "css" "contents/404/dist/inline.css" "404-inlines"
-                    <> inlineContext
-                         "img" "contents/404/dist/img.base64" "404-inlines"
+            let ctx = snapshotBodyField
+                        "css" "common/dist/404.css" "404Inlines"
+                    <> snapshotBodyField
+                        "img" "common/dist/404.base64" "404Inlines"
                     <> defaultContext
             makeItem ("" :: String)
                 >>= loadAndApplyTemplate "templates/404.html" ctx
                 >>= relativizeUrlsNoIndex
 
+    forM_ [ "common/dist/global*"
+          , "common/dist/blog*"
+          , "common/dist/sw*"
+          ] $ \x ->
+        match x $ do
+            route $ gsubRoute "common/dist/" (const "")
+            compile copyFileCompiler
 
-    -- | Page contents
-    pageIndices <- mkPageIndices
+    commonAssetsUrlContext <- mkUrlContext
+      [ ("global-js", "common/dist/global*.js")
+      , ("global-css", "common/dist/global*.css")
+      , ("blog-js", "common/dist/blog*.js")
+      , ("blog-css", "common/dist/blog*.css")
+      ]
 
-    match pageAssetsPattern $ do
-        route pageRoute
+
+    -- | Entries
+    blogEntries <- mkEntries blogIndexes (Just . blogPath) recentFirst
+    pageEntries <- mkEntries pageIndexes pagePath recentFirst
+
+
+    -- | Blog
+    tags <- buildTags blogIndexes (fromCapture "blog/tags/*.html")
+
+    match blogImages $ do
+        route idRoute
         compile copyFileCompiler
 
-    match pageInlinePattern $
-        compile $ getResourceString >>= saveSnapshot "page-inlines"
+    match blogIndexes $ do
+        route $ entryRoute blogEntries
+        compile $ do
+            idt <- getUnderlying
+            let ctx = boolField "blog" (const True)
+                    <> dateField'
+                    <> tagsField "tags" tags
+                    <> locField hostname
+                    <> entriesField "blog-entries" blogEntries idt
+                    <> entriesField "page-entries" pageEntries idt
+                    <> commonAssetsUrlContext
+                    <> defaultContext
+            (fmap demoteHeaders <$> pandocCompilerWithTransform
+                                    defaultHakyllReaderOptions
+                                    defaultHakyllWriterOptions
+                                    pandocTransformLazyImage)
+                >>= loadAndApplyTemplate "templates/blog-layout.html" ctx
+                >>= loadAndApplyTemplate "templates/layout.html" ctx
+                >>= relativizeUrlsNoIndex
 
-    match pageIndexPattern $ do
-        route $ pageRouteWith $ paths pageIndices
+    tagsRules tags $ \tag pat -> do
+        route idRoute
+        compile $ do
+            posts <- recentFirst =<< loadAll pat
+            idt <- getUnderlying
+            let ctx = constField "title" ("Tag: " ++ tag)
+                    <> locField hostname
+                    <> archiveField posts
+                    <> entriesField "blog-entries" blogEntries idt
+                    <> entriesField "page-entries" pageEntries idt
+                    <> commonAssetsUrlContext
+                    <> defaultContext
+            makeItem ""
+                >>= loadAndApplyTemplate "templates/archive-layout.html" ctx
+                >>= loadAndApplyTemplate "templates/layout.html" ctx
+                >>= relativizeUrlsNoIndex
+
+
+    -- TODO: Blog archive
+
+
+    -- | Page
+    match pageAssets $ do
+        route $ customRoute (fromMaybe "" . pagePath)
+        compile copyFileCompiler
+
+    match pageInlines $
+        compile $ getResourceString >>= saveSnapshot "pageInlines"
+
+    match pageIndexes $ do
+        route $ entryRoute pageEntries
         compile $ do
             idt <- getUnderlying
             meta <- getMetadata idt
-            let ctx = boolField "production" (const production)
-                    <> linkContext "page_contents" pageIndices idt
-                    <> absUrlContext "abs_url" pageIndices hostname
-                    <> pageIncludeContext meta idt "page-inlines"
+            let ctx = locField hostname
+                    <> includeContext meta idt "pageInlines"
+                    <> entriesField "blog-entries" blogEntries idt
+                    <> entriesField "page-entries" pageEntries idt
+                    <> commonAssetsUrlContext
                     <> defaultContext
             getResourceBody
                 >>= loadAndApplyTemplate "templates/layout.html" ctx
                 >>= relativizeUrlsNoIndex
 
 
+    -- TODO: Page archive
+
+
     -- | Sitemap
     create ["sitemap.xml"] $ do
         route idRoute
         compile $ do
-            let pages = absUrlContext "loc" pageIndices hostname
-                      <> dateField "lastmod" "%Y-%m-%d"
-                      <> metadataField
-                ctx = listField "pages" pages $ return (order pageIndices)
+            let entries = order $ blogEntries <> pageEntries
+                entriesCtx = locField hostname
+                           <> modificationTimeField "lastmod" "%Y-%m-%d"
+                           <> metadataField
+                ctx = listField "entries" entriesCtx $ return entries
+
             makeItem ("" :: String)
                 >>= loadAndApplyTemplate "templates/sitemap.xml" ctx
 
 
 --------------------------------------------------------------------------------
-data ContentIndices = ContentIndices
-    { paths :: Map Identifier FilePath
-    , order :: [Item String]
-    } deriving (Show)
+data Entries = Entries { paths :: Map Identifier FilePath
+                       , order :: [Item String]
+                       } deriving (Show)
+
+instance Semigroup Entries where
+    (<>) a b = Entries { paths = paths a <> paths b
+                       , order = order a <> order b
+                       }
+
+mkEntries :: MonadMetadata m
+          => Pattern
+          -> (Identifier -> Maybe FilePath)
+          -> ([Item String] -> m [Item String])
+          -> m Entries
+mkEntries pat path sort = do
+    idts <- mapMaybe f <$> getMatches pat
+    order <- sort [Item i "" | (i, _) <- idts]
+    return $ Entries { paths = Map.fromList idts
+                     , order = order
+                     }
+  where
+    f :: Identifier -> Maybe (Identifier, FilePath)
+    f idt = path idt >>= Just . (idt,)
+
+
+entryRoute :: Entries -> Routes
+entryRoute indices
+    = matchRoute (complement $ fromRegex "^$")
+    $ customRoute (\idt -> fromMaybe "" $ Map.lookup idt (paths indices))
+
+
+mkUrlContext :: MonadMetadata m => [(String, Pattern)] -> m (Context String)
+mkUrlContext = foldr (liftA2 mappend . getField) (pure mempty)
+  where
+    getField :: MonadMetadata m => (String, Pattern) -> m (Context String)
+    getField (k, glob) = field' k <$> getMatches glob
+
+    field' k (idt:_) = field k (\_ -> maybe (fail' idt) toUrl <$> getRoute idt)
+    field' _ [] = mempty
+    fail' idt = fail $ "No route url found " ++ toFilePath idt
 
 
 --------------------------------------------------------------------------------
-pageIndexPattern, pageAssetsPattern, pageInlinePattern :: Pattern
-pageIndexPattern = "contents/pages/*/dist/index.html"
-pageInlinePattern = "contents/pages/*/dist/inline/**"
-pageAssetsPattern = "contents/pages/*/dist/**"
-                  .&&. complement pageInlinePattern
-                  .&&. complement pageIndexPattern
+blogIndexes, blogImages :: Pattern
+blogIndexes = fromGlob "blog/*.md"
+blogImages = fromGlob "blog/images/*"
 
 
-mkPageIndices :: MonadMetadata m => m ContentIndices
-mkPageIndices = do
-    idts <- getMatches pageIndexPattern
-    order <- recentFirst [Item i "" | i <- idts]
-    return $ ContentIndices
-        { paths = Map.fromList $ (\idt -> (idt, pagePath idt)) <$> idts
-        , order = order
-        }
+blogPath :: Identifier -> FilePath
+blogPath = (`replaceExtension` ".html") . toFilePath
 
 
-pagePath :: Identifier -> FilePath
+--------------------------------------------------------------------------------
+pageIndexes, pageInlines, pageAssets :: Pattern
+pageIndexes = fromGlob "page/*/dist/index.html"
+pageInlines = fromGlob "page/*/dist/inline/**"
+pageAssets = fromGlob "page/*/dist/**"
+           .&&. complement pageIndexes
+           .&&. complement pageInlines
+
+
+pagePath :: Identifier -> Maybe FilePath
 pagePath idt = case getAllTextSubmatches (path =~ reg) of
-    [_, dir, name] | dir == "home" -> name
-                   | otherwise     -> dir ++ "/" ++ name
-    _                              -> "_"
+    [_, dir, name] | dir == "home" -> Just name
+                   | otherwise     -> Just $ dir ++ "/" ++ name
+    _                              -> Nothing
   where
     path = toFilePath idt
-    reg = "^contents/pages/([a-z0-9_-]+)/dist/(.*)$" :: String
-
-
-pageRoute :: Routes
-pageRoute = pageRouteWith Map.empty
-
-
-pageRouteWith :: Map Identifier FilePath -> Routes
-pageRouteWith m = matchRoute (complement $ fromRegex "^_$") $ customRoute f
-  where
-    f idt = fromMaybe (pagePath idt) (Map.lookup idt m)
-
-
--- | Page specific JS/CSS
-pageIncludeContext :: Metadata -> Identifier -> Snapshot -> Context String
-pageIncludeContext meta idt inlineSnap =
-    file "styles" "style"
-    <> file "scripts" "script"
-    <> inline "inline_styles" "style" "*.css"
-    <> inline "inline_scripts" "script" "*.js"
-  where
-    file k k' = case lookupStringList k meta of
-        Nothing -> mempty
-        Just v  -> listField k (field k' (return . itemBody))
-                     $ traverse makeItem v
-
-    inline k k' s = listField k (field k' $ return . itemBody) $ inlineItems s
-    inlineDir = replaceIdx (toFilePath idt) ++ "inline/"
-    inlineItems :: String -> Compiler [Item String]
-    inlineItems s = loadAllSnapshots (fromGlob $ inlineDir ++ s) inlineSnap
+    reg = "^page/([a-z0-9_-]+)/dist/(.*)$" :: String
 
 
 --------------------------------------------------------------------------------
-linkContext :: String -> ContentIndices -> Identifier -> Context String
-linkContext _ ContentIndices { order = [] } _ = mempty
-linkContext k ContentIndices { paths, order } idt =
-    listField k ctx $ return order
-  where
-    ctx = field "link" url <> metadataField
-    url item = let idt' = itemIdentifier item
-               in if idt' == idt
-                   then empty
-                   else return $ maybe empty ("/"++) $ Map.lookup idt' paths
+-- Complete URL
+dateField' :: Context String
+dateField' = dateField "date" "%B %e, %Y"
 
 
--- | Complete/Absolute URL
-absUrlContext :: String -> ContentIndices -> String -> Context String
-absUrlContext _ ContentIndices { order = [] } _ = mempty
-absUrlContext k ContentIndices { paths } origin =
-    field k $ return . url
-  where
-    url = (origin++) . replaceIdx . ("/"++) . (Map.!) paths . itemIdentifier
+locField :: String -> Context String
+locField origin = mapContext ((origin++) . replaceIdx) $ urlField "loc"
 
 
-inlineContext :: String -> FilePath -> Snapshot -> Context String
-inlineContext k path snap = field k body
+snapshotBodyField :: String -> FilePath -> Snapshot -> Context String
+snapshotBodyField k path snap = field k body
   where
     body = const $ loadSnapshotBody (fromFilePath path) snap
 
 
+archiveField :: [Item String] -> Context String
+archiveField items = listField "archive-items" ctx (return items)
+  where
+    ctx = dateField' <> defaultContext
+
+
+entriesField :: String -> Entries -> Identifier -> Context String
+entriesField _ Entries { order = [] } _ = mempty
+entriesField k Entries { order } idt = listField k ctx $ return $ take 5 order
+  where
+    ctx = boolField "current" ((idt==) . itemIdentifier)
+        <> metadataField
+        <> defaultContext
+
+
+-- Page specific JS/CSS
+includeContext :: Metadata -> Identifier -> Snapshot -> Context String
+includeContext meta idt inlineSnap
+    = ref "styles" <> ref "scripts"
+    <> inline "inline-styles" "style-body" "*.css"
+    <> inline "inline-scripts" "script-body" "*.js"
+  where
+    ref :: String -> Context String
+    ref k = case lookupObjectList k meta of
+        Just v  -> listField k refAttrs $ traverse makeItem v
+        Nothing -> mempty
+
+    refAttrs :: Context (HMap.HashMap Text Text)
+    refAttrs = Context $ \k _ i -> case HMap.lookup (T.pack k) (itemBody i) of
+        Just x -> return $ StringField $ T.unpack x
+        Nothing -> empty
+
+    inline :: String -> String -> String -> Context String
+    inline k k' s = listField k (field k' $ return . itemBody) $ inlineItems s
+
+    inlineItems :: String -> Compiler [Item String]
+    inlineItems s = loadAllSnapshots (fromGlob $ inlineDir ++ s) inlineSnap
+    inlineDir = replaceIdx (toFilePath idt) ++ "inline/"
+
+
 --------------------------------------------------------------------------------
+lookupObjectList :: String -> Metadata -> Maybe [HMap.HashMap Text Text]
+lookupObjectList k meta = HMap.lookup (T.pack k) meta >>= toList
+  where
+    toList (Yaml.Array x) = traverse toObject (V.toList x)
+    toList _              = Nothing
+    toObject (Yaml.Object x) = traverse toString x
+    toObject _               = Nothing
+    toString (Yaml.String t)   = Just t
+    toString (Yaml.Bool True)  = Just "true"
+    toString (Yaml.Bool False) = Just "false"
+    toString _                 = Nothing
+
+
+-- For common/src/blog/lazyImage.ts
+pandocTransformLazyImage :: Pandoc -> Pandoc
+pandocTransformLazyImage (Pandoc meta block) = Pandoc meta $ walk f block
+  where
+    f (Pandoc.Image attr xs (url, _)) = Pandoc.Span (g attr url xs) []
+    f x = x
+    g (idt, classes, kv) url xs =
+        let style = fromMaybe "" $ lookup "style" kv
+        in ( idt
+           , classes ++ ["lazy-image"]
+           , kv ++ [ ("data-src", url)
+                   , ("data-alt", concatMap toString xs)
+                   , ("style", style)
+                   ]
+           )
+    toString (Pandoc.Str x) = x
+    toString Pandoc.Space   = " "
+    toString _              = ""
+
+
 relativizeUrlsNoIndex :: Item String -> Compiler (Item String)
 relativizeUrlsNoIndex item = do
     r <- getRoute $ itemIdentifier item
@@ -194,6 +338,7 @@ replaceIdx = replaceAll "/index.html" (const "/")
 
 --------------------------------------------------------------------------------
 config :: Configuration
-config = defaultConfiguration
-    { previewPort = 3000
-    }
+config = defaultConfiguration { previewHost = "0.0.0.0"
+                              , previewPort = 3000
+                              , inMemoryCache = True
+                              }

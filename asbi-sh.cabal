@@ -10,10 +10,16 @@ cabal-version:      >= 1.10
 
 executable site
   main-is:          site.hs
-  ghc-options:      -threaded -Wall -fwarn-tabs
+  ghc-options:      -threaded -Wcompat -Wall -fwarn-tabs
   default-language: Haskell2010
   build-depends:    base == 4.*
                   , hakyll == 4.12.5.2
+                  , pandoc == 2.5
+                  , pandoc-types == 1.17.5.4
+                  , filepath == 1.4.2.1
+                  , text == 1.2.3.1
+                  , vector == 0.12.0.2
+                  , yaml == 0.11.0.0
                   , containers
                   , regex-tdfa
                   , unordered-containers
