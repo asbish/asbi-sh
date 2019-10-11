@@ -1,4 +1,5 @@
 .envrc
+.firebaserc
 .firebase/
 .stack-work/
 _site/
