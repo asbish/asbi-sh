@@ -248,7 +248,7 @@
     background: var(--baseColor);
     flex-shrink: 2;
     margin: 0 var(--negContentSideMargin) 0 var(--contentSideMargin);
-    padding: 42px var(--contentSideMargin) 0 0;
+    padding: 42px var(--contentSideMargin) 0;
   }
 
   .descriptionText {
@@ -264,7 +264,7 @@
 
   .description {
     margin: 0 var(--negContentSideMarginX2) 0 var(--contentSideMarginX2);
-    padding: 42px var(--contentSideMarginX2) 0 0;
+    padding: 42px var(--contentSideMarginX2) 0;
   }
 
   .carouselInfo {
