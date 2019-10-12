@@ -31,10 +31,6 @@ const config: webpack.Configuration = {
     extensions: ['.ts', '.tsx', '.js', '.css']
   },
 
-  externals: {
-    three: 'THREE'
-  },
-
   module: {
     rules: [
       {
