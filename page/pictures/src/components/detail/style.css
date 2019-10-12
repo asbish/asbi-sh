@@ -88,16 +88,17 @@
   stroke-dashoffset: 0;
   stroke-miterlimit: 10;
   stroke-width: 1px;
-  visibility: hidden; /* For animation delay */
   width: 100%;
 }
 
 .closeSVGLine1 {
   animation: close-flow 0.12s linear 0.62s 1 normal forwards;
+  visibility: hidden; /* For animation delay */
 }
 
 .closeSVGLine2 {
   animation: close-flow 0.12s linear 0.5s 1 normal forwards;
+  visibility: hidden; /* For animation delay */
 }
 
 .content {
