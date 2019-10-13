@@ -69,8 +69,8 @@
               </a>
             </div>
             <div class="menu-category">
-              <div class="menu-category-title">BLOG</div>
-              <ul class="menu-entries-indented">
+              <div class="menu-category-title">Blog</div>
+              <ul class="menu-entries">
                 $for(blog-entries)$
                 <li class="menu-entry">
                   $if(current)$
@@ -92,6 +92,7 @@
               </ul>
             </div>
             <div class="menu-category">
+              <div class="menu-category-title">Pages</div>
               <ul class="menu-entries">
                 $for(page-entries)$$if(nomenu)$$else$
                 <li class="menu-entry">
