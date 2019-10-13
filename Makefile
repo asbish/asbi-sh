@@ -1,27 +1,23 @@
-site: build_site
-
-all: pre_process build
-
-pre_process:
-	@yarn install
-
-build: build_contents build_site
-
-build_contents:
-	@yarn build
-
 build_site:
 	@stack build
 	@stack exec site clean
 	@stack exec site build
+
+build_contents:
+	@yarn build
 
 watch_site:
 	@stack build
 	@stack exec site clean
 	@stack exec site watch
 
+pre_process:
+	@yarn install
+
 clean:
 	@yarn clean
 	@stack exec site clean
 
-.PHONY: build_contents build_site watch pre_process clean
+all: pre_process build_contents build_site
+
+.PHONY: build_site build_contents watch_site pre_process clean
