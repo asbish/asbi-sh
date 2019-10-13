@@ -304,21 +304,58 @@ lookupObjectList k meta = HMap.lookup (T.pack k) meta >>= toList
     toString _                 = Nothing
 
 
--- For common/src/blog/lazyImage.ts
+-- For common/src/blog/lazy-image.ts
+-- Additional attributes are `data-max-width` (for `lazy-image-inner`) and
+-- `data-height-ratio` (for `lazy-image-container`)
+--
+-- # Examples
+--
+-- # from:
+-- ![foo](./images/foo.png){data-max-width="500px" data-height-ratio="72.5%" }
+--
+-- # to:
+-- <span class="lazy-image" data-src="./images/foo.png" data-alt="foo">
+--   <span class="lazy-image-inner" style="max-width:500px">
+--     <span class="lazy-image-container" style="padding-bottom:72.5%"></span>
+--   </span>
+-- </span>
+--
 pandocTransformLazyImage :: Pandoc -> Pandoc
 pandocTransformLazyImage (Pandoc meta block) = Pandoc meta $ walk f block
   where
-    f (Pandoc.Image attr xs (url, _)) = Pandoc.Span (g attr url xs) []
+    f (Pandoc.Image (idt, classes, kv) xs (url, _)) =
+      let (ctnr, kv') = child "data-height-ratio" kv "padding-bottom"
+                                ["lazy-image-container"] []
+          (inner, kv'') = child "data-max-width" kv' "max-width"
+                                ["lazy-image-inner"] ctnr
+      in Pandoc.Span (idt
+                     , classes ++ ["lazy-image"]
+                     , kv'' ++ [ ("data-src", url)
+                               , ("data-alt", concatMap toString xs)
+                               ]
+                     ) inner
     f x = x
-    g (idt, classes, kv) url xs =
-        let style = fromMaybe "" $ lookup "style" kv
-        in ( idt
-           , classes ++ ["lazy-image"]
-           , kv ++ [ ("data-src", url)
-                   , ("data-alt", concatMap toString xs)
-                   , ("style", style)
-                   ]
-           )
+
+    child :: String -- key
+          -> [(String, String)] -- attribute assocs
+          -> String -- CSS style property name
+          -> [String] -- CSS classes
+          -> [Pandoc.Inline] -- children
+          -> ([Pandoc.Inline], [(String, String)])
+    child k kv propName classNames children =
+        let (v, kv') = lookupThenDelete k kv []
+            toStyle x = ("style", propName ++ ":" ++ x)
+        in ([Pandoc.Span ("", classNames, toStyle <$> v) children], kv')
+
+    lookupThenDelete :: String -- key
+                     -> [(String, String)] -- rest assocs
+                     -> [(String, String)] -- past assocs
+                     -> ([String], [(String, String)])
+    lookupThenDelete _ [] past = ([], past)
+    lookupThenDelete k (xy@(x,y):xys) past
+        | k == x    = ([y], past ++ xys)
+        | otherwise = lookupThenDelete k xys (xy:past)
+
     toString (Pandoc.Str x) = x
     toString Pandoc.Space   = " "
     toString _              = ""

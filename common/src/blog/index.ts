@@ -1,3 +1,3 @@
-import * as lazyImage from './lazyImage';
+import * as lazyImage from './lazy-image';
 
 lazyImage.init();
