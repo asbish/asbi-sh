@@ -307,20 +307,12 @@ body[data-menu='opened'] {
 .menu-category-title {
   box-sizing: border-box;
   color: #000;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   margin: 0;
   padding: 8px 0 8px 8px;
 }
 
-/* TODO: check */
 .menu-entries {
-  box-sizing: border-box;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.menu-entries-indented {
   box-sizing: border-box;
   list-style: none;
   margin: 0;
@@ -474,12 +466,17 @@ main {
   }
 
   .menu-category {
-    /* TODO: check */
     padding: 0;
 
     & + .menu-category {
       border-top: none;
+      padding: 16px 0;
     }
+  }
+
+  .menu-category-title {
+    margin: 0 0 12px;
+    padding: 1px 0 1px 8px;
   }
 
   main {
