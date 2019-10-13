@@ -1,14 +1,13 @@
 /**
- * Need:  `className`, `data-src` and `data-height-ratio`
- * Optional: `data-src-webp`, `data-alt`, `data-max-width` and `data-pos`
+ * Example
  *
  * <span class="lazy-image"
- *       data-src="path-to-image"
- *       data-height-ratio="62.5%(height/width)"
+ *       data-src="path/to/image"
  *       data-src-webp="path/to/image"
- *       data-alt="foo bar"
- *       data-max-width="500px"
- *       data-pos="center | left | right">
+ *       data-alt="foo">
+ *   <span class="lazy-image-inner" style="max-width:500px">
+ *     <span class="lazy-image-container" style="padding-bottom:62.5%"></span>
+ *   </span>
  * </span>
  */
 
@@ -39,6 +38,7 @@ function handleLoadImage(this: HTMLImageElement, elem: Element): void {
 
 function putImage(elem: Element): void {
   elem.setAttribute('aria-busy', 'true');
+  elem.querySelector('.lazy-image-container')!.appendChild(createLoadingNode());
 
   const img = new Image();
   img.className = 'lazy-image-img';
@@ -60,34 +60,6 @@ function putImage(elem: Element): void {
       elem.setAttribute('aria-busy', 'false');
     }
   });
-}
-
-function appendChildElements(elem: Element): void {
-  const pos = elem.getAttribute('data-pos');
-  elem.setAttribute(
-    'style',
-    `text-align: ${
-      pos === 'center' ? 'center' : pos === 'right' ? 'right' : 'left'
-    }`
-  );
-
-  const inner = document.createElement('span');
-  inner.className = 'lazy-image-inner';
-  inner.setAttribute(
-    'style',
-    `max-width: ${elem.getAttribute('data-max-width') || '100%'}`
-  );
-
-  const imageContainer = document.createElement('span');
-  imageContainer.className = 'lazy-image-container';
-  imageContainer.setAttribute(
-    'style',
-    `padding-bottom: ${elem.getAttribute('data-height-ratio') || '100%'}`
-  );
-  imageContainer.appendChild(createLoadingNode());
-
-  inner.appendChild(imageContainer);
-  elem.appendChild(inner);
 }
 
 // Setup Observer
@@ -113,8 +85,6 @@ export function init(): void {
 
   const _elems = Array.prototype.slice.call(elems);
   for (let i = 0; i < _elems.length; ++i) {
-    const elem = _elems[i];
-    appendChildElements(elem);
-    observer.observe(elem);
+    observer.observe(_elems[i]);
   }
 }
