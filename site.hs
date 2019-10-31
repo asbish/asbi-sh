@@ -47,6 +47,7 @@ main = hakyllWith config $ do
                         "css" "common/dist/404.css" "404Inlines"
                     <> snapshotBodyField
                         "img" "common/dist/404.base64" "404Inlines"
+                    <> constField "home" (hostname ++ "/")
                     <> defaultContext
             makeItem ("" :: String)
                 >>= loadAndApplyTemplate "templates/404.html" ctx
