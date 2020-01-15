@@ -24,6 +24,12 @@ module.exports = {
   rules: {
     'no-console': 'warn',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-empty-function': [
+      'error',
+      {
+        allow: ['arrowFunctions']
+      }
+    ],
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/explicit-member-accessibility': [
       'error',
