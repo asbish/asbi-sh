@@ -1,6 +1,7 @@
 Makefile
 LICENSE
 .tern-port
+.firebaserc
 .gitignore
 .editorconfig
 .envrc
