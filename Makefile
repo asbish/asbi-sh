@@ -1,23 +1,22 @@
-build_site:
-	@stack build
-	@stack exec site clean
-	@stack exec site build
-
-build_contents:
-	@yarn build
-
-watch_site:
-	@stack build
-	@stack exec site clean
-	@stack exec site watch
+all: pre_process build_pages build_site
 
 pre_process:
 	@yarn install
 
+build_pages:
+	@yarn build
+
+build_site:
+	@cabal build
+	@cabal exec site clean
+	@cabal exec site build
+
+watch_site:
+	@cabal build
+	@cabal exec site watch
+
 clean:
 	@yarn clean
-	@stack exec site clean
+	@cabal exec site clean
 
-all: pre_process build_contents build_site
-
-.PHONY: build_site build_contents watch_site pre_process clean
+.PHONY: pre_process build_pages build_site watch_site clean

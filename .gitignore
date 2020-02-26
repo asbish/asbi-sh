@@ -2,9 +2,9 @@
 .envrc
 .firebaserc
 .firebase/
-.stack-work/
 _site/
 _cache/
+dist-newstyle
 **/node_modules
 **/dist
 **/*.log
