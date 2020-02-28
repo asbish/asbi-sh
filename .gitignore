@@ -1,5 +1,9 @@
 .dir-locals.el
 .envrc
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
 .firebaserc
 .firebase/
 _site/

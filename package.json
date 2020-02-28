@@ -3,11 +3,11 @@
   "scripts": {
     "build": "lerna run build",
     "clean": "lerna run clean",
-    "lint": "npm run lint:js && npm run lint:css",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:fmt",
     "lint:js": "eslint '**/*.{ts,js,tsx,jsx}'",
     "lint:css": "stylelint '**/*.css'",
-    "prettier": "prettier --check '**/*'",
-    "prettier:write": "prettier --write '**/*'"
+    "lint:fmt": "prettier --check '**/*'",
+    "lint:fmt:write": "prettier --write '**/*'"
   },
   "workspaces": [
     "shared",
