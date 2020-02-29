@@ -1741,14 +1741,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn-walk@npm:^6.1.1":
+"acorn-loose@npm:^6.0.0":
+  version: 6.1.0
+  resolution: "acorn-loose@npm:6.1.0"
+  dependencies:
+    acorn: ^6.2.0
+  checksum: 2/1eafebf266781a1cce1d91b18ced060c51758e9d26f6eb23e386e1afbd7b01ade617e46f60264630df9e214fa1a2466255b4334862c34d819dd118139a71f93c
+  languageName: node
+  linkType: hard
+
+"acorn-walk@npm:^6.0.0, acorn-walk@npm:^6.1.1":
   version: 6.2.0
   resolution: "acorn-walk@npm:6.2.0"
   checksum: 2/3bd8415090ecfcf0a40e9bdde722993104d209d8e7721b48d9c77c46fb1dd261cc29ae0ee47e6532db9fbfe96d911b19ec0d72a383b20ed331364ab18d35b75b
   languageName: node
   linkType: hard
 
-"acorn@npm:^6.0.7, acorn@npm:^6.2.1":
+"acorn@npm:^6.0.0, acorn@npm:^6.0.7, acorn@npm:^6.2.0, acorn@npm:^6.2.1":
   version: 6.4.0
   resolution: "acorn@npm:6.4.0"
   bin:
@@ -4384,6 +4393,18 @@ __metadata:
     memory-fs: ^0.4.0
     tapable: ^1.0.0
   checksum: 2/a2c570450cb552aff2edb5e115ba950e7895941be4f6625b320804502ae4d8ee46a6fb040ff9454335bd933b36d1db457da5869852bb7f5041209979a747dafc
+  languageName: node
+  linkType: hard
+
+"enhanced-resolve@npm:^2.2.2":
+  version: 2.3.0
+  resolution: "enhanced-resolve@npm:2.3.0"
+  dependencies:
+    graceful-fs: ^4.1.2
+    memory-fs: ^0.3.0
+    object-assign: ^4.0.1
+    tapable: ^0.2.3
+  checksum: 2/847f78c97e4c63048a98d6d6ffbe4cba3aaee85d5dc0ac56389f51bddad97ef33dfc03f73d2615bc4beccc3a70a41f97ec43fccd17fdba27695fe41759dde8ef
   languageName: node
   linkType: hard
 
@@ -7781,6 +7802,16 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"memory-fs@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "memory-fs@npm:0.3.0"
+  dependencies:
+    errno: ^0.1.3
+    readable-stream: ^2.0.1
+  checksum: 2/b7f5ec824539c26872dc2ca354130030ad9982336134b90c8fde22fc00b6c14fdd91013e236f186443513b3467b5176563d6c37f8158b1eec165f5964d861821
+  languageName: node
+  linkType: hard
+
 "memory-fs@npm:^0.4.0, memory-fs@npm:^0.4.1":
   version: 0.4.1
   resolution: "memory-fs@npm:0.4.1"
@@ -8000,7 +8031,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^3.0.4":
+"minimatch@npm:^3.0.3, minimatch@npm:^3.0.4":
   version: 3.0.4
   resolution: "minimatch@npm:3.0.4"
   dependencies:
@@ -11131,6 +11162,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"resolve-from@npm:2.0.0":
+  version: 2.0.0
+  resolution: "resolve-from@npm:2.0.0"
+  checksum: 2/e2cfa9d4402ceb731ce14f639248c8a8a364db8710ba3360a4492046c6688084235645a4f4004ac7d9acf40bc0644fac6d8c24f9012c7e5773234a7c09d57cb4
+  languageName: node
+  linkType: hard
+
 "resolve-from@npm:^3.0.0":
   version: 3.0.0
   resolution: "resolve-from@npm:3.0.0"
@@ -11434,6 +11472,7 @@ resolve@1.12.0:
     stylelint: ^10.1.0
     stylelint-config-recommended: ^2.2.0
     stylelint-order: ^3.0.0
+    tern: ^0.24.3
     terser-webpack-plugin: ^2.0.0
     ts-loader: ^6.0.4
     ts-node: ^8.3.0
@@ -12539,6 +12578,13 @@ resolve@1.12.0:
   languageName: node
   linkType: hard
 
+"tapable@npm:^0.2.3":
+  version: 0.2.9
+  resolution: "tapable@npm:0.2.9"
+  checksum: 2/d585c134eff4414b2145546afe3dd7ca2e48804d5ac810efdcb809c143f9715696b74214642884df5058e98e5a9f167c3a08a69b57171e577742109483972fab
+  languageName: node
+  linkType: hard
+
 "tapable@npm:^1.0.0, tapable@npm:^1.1.3":
   version: 1.1.3
   resolution: "tapable@npm:1.1.3"
@@ -12579,6 +12625,23 @@ resolve@1.12.0:
     temp-dir: ^1.0.0
     uuid: ^3.0.1
   checksum: 2/b5e93a498e1e674e5de055c77a74dd944a5dcabd2d90d50530334ee59dc1cfae6d29d42d470618ef7daf99df548f3253724d5298ff18f331e85228b602500d86
+  languageName: node
+  linkType: hard
+
+"tern@npm:^0.24.3":
+  version: 0.24.3
+  resolution: "tern@npm:0.24.3"
+  dependencies:
+    acorn: ^6.0.0
+    acorn-loose: ^6.0.0
+    acorn-walk: ^6.0.0
+    enhanced-resolve: ^2.2.2
+    glob: ^7.1.1
+    minimatch: ^3.0.3
+    resolve-from: 2.0.0
+  bin:
+    tern: bin/tern
+  checksum: 2/386bbde9d2e959079ae7443a94c8ede38a012f26e8f96d3b8edf7d95fc10d0743d6df7b84bd4c1fb653959d576f0145386f384b747d1c1d1a3faab9239026e3c
   languageName: node
   linkType: hard
 
