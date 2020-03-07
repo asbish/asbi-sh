@@ -26,6 +26,15 @@
         ]
       },
       {
+        "source": "**/*.license",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=300"
+          }
+        ]
+      },
+      {
         "source": "404.html",
         "headers": [
           {

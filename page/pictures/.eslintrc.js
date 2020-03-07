@@ -1,13 +1,22 @@
 module.exports = {
+  root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'jsx-a11y', 'react'],
   extends: [
     'standard',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
     'prettier',
     'prettier/@typescript-eslint'
   ],
+  settings: {
+    react: {
+      pragma: 'h',
+      version: '16'
+    }
+  },
   env: {
     browser: true
   },

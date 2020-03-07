@@ -1,13 +1,14 @@
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
+const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
-const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const HTMLPlugin = require('html-webpack-plugin');
 const LicenseWebpackPlugin = require('license-webpack-plugin')
   .LicenseWebpackPlugin;
+const HTMLPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const PostCSSPresetEnv = require('postcss-preset-env');
 const PostCSSPresetEnvConfig = require('shared/build/postcss-preset-env.config.js');
 
@@ -23,11 +24,16 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist/'),
     publicPath: isDev ? '/' : '/pendulum/',
-    filename: isDev ? '[name].js' : '[name]-[hash].js'
+    filename: isDev ? '[name].js' : '[name]-[contenthash].js'
   },
 
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
+    plugins: [PnpWebpackPlugin]
+  },
+
+  resolveLoader: {
+    plugins: [PnpWebpackPlugin.moduleLoader(module)]
   },
 
   externals: {
@@ -80,11 +86,11 @@ module.exports = {
     new HTMLPlugin(
       isDev
         ? {
-            template: path.resolve(__dirname, 'index.dev.html')
+            template: path.resolve(__dirname, './src/index.dev.html')
           }
         : {
             inject: false,
-            template: path.resolve(__dirname, 'index.html')
+            template: path.resolve(__dirname, './src/index.html')
           }
     ),
     isDev &&
@@ -97,7 +103,8 @@ module.exports = {
         chunkIncludeExcludeTest: {
           include: ['pendulum']
         },
-        outputFilename: '[name]-[hash].js.license'
+        outputFilename: '[name].js.license',
+        excludedPackageTest: name => name === 'shared'
       })
   ].filter(Boolean),
 

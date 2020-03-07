@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "types": ["webpack-env"],
     "lib": ["DOM", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",

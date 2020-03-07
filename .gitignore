@@ -4,6 +4,7 @@
 !.yarn/releases
 !.yarn/plugins
 .pnp.*
+.vscode/
 .firebaserc
 .firebase/
 _site/

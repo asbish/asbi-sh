@@ -102,21 +102,53 @@ class Carousel extends Component<Props, State> {
   componentDidMount() {
     const { passiveOptions } = this.props;
 
-    this.base!.addEventListener('touchstart', this.hTouchStart, passiveOptions);
-    this.base!.addEventListener('touchmove', this.hTouchMove, passiveOptions);
-    this.base!.addEventListener('touchend', this.hTouchEnd, passiveOptions);
-    this.base!.addEventListener('touchcancel', this.hTouchEnd, passiveOptions);
+    (this.base as HTMLElement).addEventListener(
+      'touchstart',
+      this.hTouchStart,
+      passiveOptions
+    );
+    (this.base as HTMLElement).addEventListener(
+      'touchmove',
+      this.hTouchMove,
+      passiveOptions
+    );
+    (this.base as HTMLElement).addEventListener(
+      'touchend',
+      this.hTouchEnd,
+      passiveOptions
+    );
+    (this.base as HTMLElement).addEventListener(
+      'touchcancel',
+      this.hTouchEnd,
+      passiveOptions
+    );
 
     const observer = new ResizeObserver(this.hResize);
-    observer.observe(this.base!);
+    observer.observe(this.base as HTMLElement);
     this.baseObserver = observer;
   }
 
   componentWillUnmount() {
-    this.base!.removeEventListener('touchstart', this.hTouchStart, false);
-    this.base!.removeEventListener('touchmove', this.hTouchMove, false);
-    this.base!.removeEventListener('touchend', this.hTouchEnd, false);
-    this.base!.removeEventListener('touchcancel', this.hTouchEnd, false);
+    (this.base as HTMLElement).removeEventListener(
+      'touchstart',
+      this.hTouchStart,
+      false
+    );
+    (this.base as HTMLElement).removeEventListener(
+      'touchmove',
+      this.hTouchMove,
+      false
+    );
+    (this.base as HTMLElement).removeEventListener(
+      'touchend',
+      this.hTouchEnd,
+      false
+    );
+    (this.base as HTMLElement).removeEventListener(
+      'touchcancel',
+      this.hTouchEnd,
+      false
+    );
 
     if (this.baseObserver) {
       this.baseObserver.disconnect();
@@ -226,7 +258,7 @@ class Carousel extends Component<Props, State> {
                 ...calcScaledDirectionToTheCenter(
                   end,
                   end1,
-                  this.base!.getBoundingClientRect(),
+                  (this.base as HTMLElement).getBoundingClientRect(),
                   this.maxScale
                 )
               }
@@ -328,7 +360,7 @@ class Carousel extends Component<Props, State> {
       ) {
         const s = src[i];
         const left = unitWidth * i + offset;
-        const style =
+        const style: { [key: string]: string | number } =
           i !== focusIdx
             ? { transform: `matrix(1,0,0,1,${left},0)` }
             : {

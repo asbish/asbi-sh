@@ -19,4 +19,4 @@ clean:
 	@yarn clean
 	@cabal exec site clean
 
-.PHONY: pre_process build_pages build_site watch_site clean
+.PHONY: all pre_process build_pages build_site watch_site clean

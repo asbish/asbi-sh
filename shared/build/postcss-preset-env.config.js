@@ -40,6 +40,7 @@ module.exports = {
         '--contentTopMargin': `${contentTopMargin}px`,
         '--contentSideMargin': `${contentSideMargin}px`,
         '--contentSideMarginX2': `${contentSideMarginX2}px`,
+
         // Shorthand calc(0px - x)
         '--negContentTopMargin': `${-contentTopMargin}px`,
         '--negContentSideMargin': `${-contentSideMargin}px`,

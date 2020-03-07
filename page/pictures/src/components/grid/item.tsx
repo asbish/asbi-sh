@@ -22,11 +22,11 @@ class Item extends Component<Props, State> {
   state: State = { inView: false, loaded: false };
 
   componentDidMount() {
-    this.props.observeInView(this.base!, this.inViewport);
+    this.props.observeInView(this.base as HTMLElement, this.inViewport);
   }
 
   componentWillUnmount() {
-    this.props.unobserveInView(this.base!);
+    this.props.unobserveInView(this.base as HTMLElement);
   }
 
   @bind

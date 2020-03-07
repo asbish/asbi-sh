@@ -24,7 +24,7 @@ export default class Pendulum {
 
   constructor(
     scene: THREE.Scene,
-    bob: THREE.Scene,
+    bob: THREE.Group,
     mass = 50, // Kg
     ropeLength = 1.5 // M
   ) {

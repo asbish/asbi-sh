@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -ex
+yarn upgrade-interactive
+yarn pnpify --sdk

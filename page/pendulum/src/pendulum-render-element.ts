@@ -51,7 +51,7 @@ class PendulumRenderElement extends HTMLElement {
     super();
 
     this.renderer = new THREE.WebGLRenderer({ alpha: true });
-    this.renderer.gammaOutput = true;
+    this.renderer.outputEncoding = THREE.GammaEncoding;
     this.renderer.gammaFactor = 2.2;
     this.renderer.setClearColor(0xffffff, 0);
 

@@ -1,20 +1,24 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
-import path from 'path';
-import webpack from 'webpack';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import HTMLPlugin from 'html-webpack-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import MiniCSSExtractPlugin from 'mini-css-extract-plugin';
-import { LicenseWebpackPlugin } from 'license-webpack-plugin';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+const path = require('path');
+const webpack = require('webpack');
+const PnpWebpackPlugin = require('pnp-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
+const LicenseWebpackPlugin = require('license-webpack-plugin')
+  .LicenseWebpackPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
+const HTMLPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const PostCSSPresetEnv = require('postcss-preset-env');
+const PostCSSPresetEnvConfig = require('shared/build/postcss-preset-env.config.js');
 
 const isDev = process.env.NODE_ENV === 'development';
-const isAnalyze = process.env.NODE_ENV === 'analyze';
+const withAnalyzer = process.env.NODE_ENV === 'analyze';
+
 const publicPath = '/pictures/';
 
-const config: webpack.Configuration = {
+module.exports = {
   mode: isDev ? 'development' : 'production',
 
   entry: {
@@ -24,11 +28,16 @@ const config: webpack.Configuration = {
   output: {
     path: path.resolve(__dirname, './dist/'),
     publicPath,
-    filename: '[name]-[hash].js'
+    filename: '[name]-[contenthash].js'
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.css']
+    extensions: ['.ts', '.tsx', '.js', '.css'],
+    plugins: [PnpWebpackPlugin]
+  },
+
+  resolveLoader: {
+    plugins: [PnpWebpackPlugin.moduleLoader(module)]
   },
 
   module: {
@@ -58,11 +67,7 @@ const config: webpack.Configuration = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [
-                require('postcss-preset-env')(
-                  require('shared/build/postcss-preset-env.config.js')
-                )
-              ]
+              plugins: () => [PostCSSPresetEnv(PostCSSPresetEnvConfig)]
             }
           }
         ]
@@ -83,11 +88,11 @@ const config: webpack.Configuration = {
       template: path.resolve(__dirname, './src/index.html')
     }),
     !isDev &&
-      (new LicenseWebpackPlugin({
+      new LicenseWebpackPlugin({
         chunkIncludeExcludeTest: {
           include: ['pictures']
         },
-        outputFilename: '[name]-[hash].js.license',
+        outputFilename: '[name].js.license',
         excludedPackageTest: name => name === 'shared',
         licenseTypeOverrides: {
           decko: 'MIT'
@@ -96,8 +101,8 @@ const config: webpack.Configuration = {
           'intersection-observer':
             'https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document'
         }
-      }) as any), // eslint-disable-line @typescript-eslint/no-explicit-any
-    isAnalyze && new BundleAnalyzerPlugin()
+      }),
+    withAnalyzer && new BundleAnalyzerPlugin()
   ].filter(Boolean),
 
   optimization: {
@@ -122,5 +127,3 @@ const config: webpack.Configuration = {
     ]
   }
 };
-
-export default config;

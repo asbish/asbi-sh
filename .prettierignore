@@ -3,6 +3,7 @@ LICENSE
 .tern-port
 .firebaserc
 .gitignore
+.gitattributes
 .editorconfig
 .envrc
 .eslintignore
@@ -31,6 +32,7 @@ LICENSE
 .firebase/**
 .yarnrc.yml
 .yarn/**
+.vscode/**
 **/yarn.lock
 **/package.json
 **/node_modules/**
@@ -42,5 +44,6 @@ _site/**
 _cache/**
 **/dist/**
 static/**
+scripts/**
 templates/*.html
 templates/*.xml
