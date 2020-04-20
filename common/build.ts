@@ -118,7 +118,7 @@ async function buildTS(
   if (options.license) {
     plugins.push(
       require('rollup-plugin-license')({
-        banner: `3rd party licenses are at ${outFileName}.js.license`,
+        banner: `For more third party license information, please see ${outFileName}.js.license`,
         thirdParty: {
           includePrivate: false,
           output: {

@@ -85,6 +85,7 @@ module.exports = {
     }),
     new HTMLPlugin({
       inject: false,
+      minify: false,
       template: path.resolve(__dirname, './src/index.html')
     }),
     !isDev &&
