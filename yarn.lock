@@ -10505,7 +10505,7 @@ fsevents@~2.1.2:
     stylelint-config-recommended: ^3.0.0
     stylelint-order: ^4.1.0
     terser-webpack-plugin: ^3.0.6
-    three: 0.114.0
+    three: 0.117.1
     ts-loader: ^7.0.5
     typescript: ^3.9.5
     webpack: ^4.43.0
@@ -14159,10 +14159,10 @@ resolve@^1.17.0:
   languageName: node
   linkType: hard
 
-"three@npm:0.114.0":
-  version: 0.114.0
-  resolution: "three@npm:0.114.0"
-  checksum: 2/231748d8f998a390c4d53f4fed2483a8e673906758e4507441d435fc670744a4527024111d5c2ca232e08e5fc2a700f1b9b5aa329ce66baf7ec07234485ec26e
+"three@npm:0.117.1":
+  version: 0.117.1
+  resolution: "three@npm:0.117.1"
+  checksum: 2/b3239f31c97ba606fd2a0a5cc1198be0d0ac2d2f6d26c5da597486aa6783fcef38da5d4a10b5b26d96a3e5a31e93657d99caa6f3f9df105219902abbaf2e1e2e
   languageName: node
   linkType: hard
 
