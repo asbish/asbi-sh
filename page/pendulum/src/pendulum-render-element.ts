@@ -161,7 +161,7 @@ class PendulumRenderElement extends HTMLElement {
     this.removePendulum();
 
     return loadGLTF(src)
-      .then(gltf => {
+      .then((gltf) => {
         this.pendulum = new Pendulum(this.scene, gltf.scene);
         this.animatePendulum();
 

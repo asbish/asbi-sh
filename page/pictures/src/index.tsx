@@ -36,7 +36,7 @@ interface State {
   movingCurtain: boolean;
 }
 
-class App extends Component<{}, State> {
+class App extends Component<Record<string, unknown>, State> {
   constructor() {
     super();
 
@@ -117,7 +117,10 @@ class App extends Component<{}, State> {
     this.setState({ movingCurtain: false });
   }
 
-  render(_: {}, { current, mountGrid, movingCurtain }: State) {
+  render(
+    _: Record<string, unknown>,
+    { current, mountGrid, movingCurtain }: State
+  ) {
     return (
       <div>
         {mountGrid && (

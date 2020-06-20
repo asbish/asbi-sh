@@ -105,7 +105,7 @@ module.exports = {
           include: ['pendulum']
         },
         outputFilename: '[name].js.license',
-        excludedPackageTest: name => name === 'shared'
+        excludedPackageTest: (name) => name === 'shared'
       })
   ].filter(Boolean),
 
@@ -136,7 +136,7 @@ module.exports = {
     compress: true,
     host: '0.0.0.0',
     port: 3000,
-    before: app => {
+    before: (app) => {
       app.use(express.static('../../static/'));
     }
   }

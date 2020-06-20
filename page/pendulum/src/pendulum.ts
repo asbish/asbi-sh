@@ -77,7 +77,7 @@ export default class Pendulum {
   // https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects
   // NOTE: I'm not sure if this is correct way.
   free(scene: THREE.Scene) {
-    this.group.traverse(x => {
+    this.group.traverse((x) => {
       if (x.type === 'LineSegments') {
         const rope = x as THREE.LineSegments;
         rope.geometry.dispose();

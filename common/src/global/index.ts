@@ -15,7 +15,7 @@ let onceSupported = false;
 try {
   const options = Object.defineProperty({}, 'once', {
     // eslint-disable-next-line getter-return
-    get: function() {
+    get: function () {
       onceSupported = true;
     }
   });

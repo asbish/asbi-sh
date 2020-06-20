@@ -94,7 +94,7 @@ module.exports = {
           include: ['pictures']
         },
         outputFilename: '[name].js.license',
-        excludedPackageTest: name => name === 'shared',
+        excludedPackageTest: (name) => name === 'shared',
         licenseTypeOverrides: {
           decko: 'MIT'
         },

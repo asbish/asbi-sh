@@ -7,22 +7,22 @@ declare var self: ServiceWorkerGlobalScope;
 /* global VERSION */
 const cacheName = `common-${VERSION}`;
 
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(cacheName).then(cache => {
+    caches.open(cacheName).then((cache) => {
       return cache.addAll(preCacheList);
     })
   );
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener('activate', (event) => {
   self.clients.claim();
 
   event.waitUntil(
-    caches.keys().then(keys => {
+    caches.keys().then((keys) => {
       const promises: Promise<boolean>[] = [];
 
-      keys.forEach(oldCacheName => {
+      keys.forEach((oldCacheName) => {
         if (oldCacheName !== cacheName) {
           promises.push(caches.delete(oldCacheName));
         }
@@ -33,7 +33,7 @@ self.addEventListener('activate', event => {
   );
 });
 
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
   if (url.origin !== location.origin || event.request.method !== 'GET') {
@@ -42,15 +42,15 @@ self.addEventListener('fetch', event => {
 
   if (isRuntimeCache(url.pathname)) {
     event.respondWith(
-      caches.match(event.request).then(cachedResponse => {
+      caches.match(event.request).then((cachedResponse) => {
         if (cachedResponse) return cachedResponse;
 
-        return fetch(event.request).then(response => {
+        return fetch(event.request).then((response) => {
           if (!response.ok) return response;
 
           const responseToCache = response.clone();
           event.waitUntil(
-            caches.open(cacheName).then(cache => {
+            caches.open(cacheName).then((cache) => {
               cache.put(event.request, responseToCache);
             })
           );
@@ -67,14 +67,14 @@ self.addEventListener('fetch', event => {
 
   // For pre-cached assets
   event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
+    caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) return cachedResponse;
       return cachedResponse || fetch(event.request);
     })
   );
 });
 
-self.addEventListener('message', event => {
+self.addEventListener('message', (event) => {
   switch (event.data) {
     case 'skipWaiting':
       self.skipWaiting();

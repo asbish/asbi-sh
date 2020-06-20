@@ -182,7 +182,7 @@ async function all(): Promise<void> {
 
     buildCSS('src/404/index.css', 'dist', '404'),
     image404()
-  ]).catch(err => {
+  ]).catch((err) => {
     console.error(err); // eslint-disable-line no-console
     process.exit(1);
   });

@@ -7,7 +7,7 @@ function onControllerChange() {
 async function getNewServiceWorker(reg: ServiceWorkerRegistration) {
   if (reg.installing) return reg.installing;
 
-  return new Promise<ServiceWorker | null>(resolve => {
+  return new Promise<ServiceWorker | null>((resolve) => {
     let timeoutID: number | null = null;
 
     const onUpdateFound = () => {
@@ -50,7 +50,7 @@ export async function register(url: string, newSWIsReadyCallback?: () => void) {
 
     if (newSW) {
       // Wait for change new service worker's state to `installed`
-      return new Promise<void>(resolve => {
+      return new Promise<void>((resolve) => {
         newSW.addEventListener('statechange', () => {
           if (newSW.state === 'installed') {
             newSWIsReadyCallback();
@@ -63,7 +63,7 @@ export async function register(url: string, newSWIsReadyCallback?: () => void) {
 }
 
 export async function sendSkipWaitingMessage(): Promise<void> {
-  return navigator.serviceWorker.getRegistration().then(reg => {
+  return navigator.serviceWorker.getRegistration().then((reg) => {
     if (!reg || !reg.waiting) return;
     reg.waiting.postMessage('skipWaiting');
   });

@@ -4,7 +4,7 @@ function detectSupportsPassive() {
   try {
     var options = Object.defineProperty({}, 'passive', {
       // eslint-disable-next-line getter-return
-      get: function() {
+      get: function () {
         passiveSupported = true;
       }
     });
