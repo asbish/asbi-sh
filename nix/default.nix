@@ -4,18 +4,18 @@ import sources.nixpkgs {
     (_: pkgs:
       let
         nodejs = pkgs.nodejs-12_x.overrideAttrs (oldAttrs: rec {
-          version = "12.16.1";
+          version = "12.18.1";
           name = "nodejs-${version}";
           src = pkgs.fetchurl {
             url = "https://nodejs.org/dist/v${version}/node-v${version}.tar.xz";
-            sha256 = "0ba1dla31z6i31z3723l74nky1v04irwbl3iaqmi0iicl1dq958a";
+            sha256 = "0yjwd8yilm85wkginvhhchcikjsl8g3l3qagbg0l2y1hg8f0anfa";
           };
         });
         yarn = pkgs.yarn.overrideAttrs (oldAttrs: rec {
-          version = "1.22.0";
+          version = "1.22.4";
           src = pkgs.fetchzip {
             url = "https://github.com/yarnpkg/yarn/releases/download/v${version}/yarn-v${version}.tar.gz";
-            sha256 = "0hbsdbrqx5xhr171ik862v51xwjzbfncic92pgbnhnlmxy2y974x";
+            sha256 = "1s054c9cmlmzy6cfkawhaxvaxhqcq0a17n4sb12p0bp2lzkax9lm";
           };
           buildInputs = [ nodejs ];
         });
