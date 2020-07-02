@@ -47,3 +47,4 @@ static/**
 scripts/**
 templates/*.html
 templates/*.xml
+**/*.sh

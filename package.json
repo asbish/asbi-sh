@@ -3,6 +3,7 @@
   "scripts": {
     "build": "lerna run build",
     "clean": "lerna run clean",
+    "test": "lerna run test",
     "lint": "yarn run lint:js && yarn run lint:css && yarn run lint:fmt",
     "lint:js": "eslint '**/*.{ts,js,tsx,jsx}'",
     "lint:css": "stylelint '**/*.css'",

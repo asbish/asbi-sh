@@ -6,6 +6,7 @@
     "build": "webpack",
     "watch": "NODE_ENV=development webpack -w",
     "serve": "NODE_ENV=development webpack-dev-server",
+    "test": "test/check-three-version.sh",
     "clean": "rimraf dist"
   },
   "dependencies": {
