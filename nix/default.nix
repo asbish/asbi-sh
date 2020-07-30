@@ -4,11 +4,11 @@ import sources.nixpkgs {
     (_: pkgs:
       let
         nodejs = pkgs.nodejs-12_x.overrideAttrs (oldAttrs: rec {
-          version = "12.18.1";
+          version = "12.18.3";
           name = "nodejs-${version}";
           src = pkgs.fetchurl {
             url = "https://nodejs.org/dist/v${version}/node-v${version}.tar.xz";
-            sha256 = "0yjwd8yilm85wkginvhhchcikjsl8g3l3qagbg0l2y1hg8f0anfa";
+            sha256 = "03hdds6ghlmbz8q61alqj18pdnyd6hxmbhiws4pl51wlawk805bi";
           };
         });
         yarn = pkgs.yarn.overrideAttrs (oldAttrs: rec {
