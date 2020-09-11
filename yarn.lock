@@ -8473,6 +8473,13 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"klona@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "klona@npm:2.0.3"
+  checksum: 2/69df085420a280e8d2e8c6564e23ba2bee2a03e8ca5f51e9409276bb54c6178a74adee0f94c2fc62caa584e1d2109e679abd8cc4f1114fbcd9e2886b909e8e62
+  languageName: node
+  linkType: hard
+
 "known-css-properties@npm:^0.19.0":
   version: 0.19.0
   resolution: "known-css-properties@npm:0.19.0"
@@ -10733,7 +10740,8 @@ fsevents@~2.1.2:
     mini-css-extract-plugin: ^0.11.1
     optimize-css-assets-webpack-plugin: ^5.0.4
     pnp-webpack-plugin: ^1.6.4
-    postcss-loader: ^3.0.0
+    postcss: ^7.0.32
+    postcss-loader: ^4.0.1
     postcss-preset-env: ^6.7.0
     prettier: ^2.1.1
     resize-observer-polyfill: ^1.5.1
@@ -10799,7 +10807,8 @@ fsevents@~2.1.2:
     mini-css-extract-plugin: ^0.11.1
     optimize-css-assets-webpack-plugin: ^5.0.4
     pnp-webpack-plugin: ^1.6.4
-    postcss-loader: ^3.0.0
+    postcss: ^7.0.32
+    postcss-loader: ^4.0.1
     postcss-preset-env: ^6.7.0
     preact: ^10.4.8
     prettier: ^2.1.1
@@ -11249,15 +11258,19 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"postcss-loader@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "postcss-loader@npm:3.0.0"
+"postcss-loader@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "postcss-loader@npm:4.0.1"
   dependencies:
-    loader-utils: ^1.1.0
+    cosmiconfig: ^7.0.0
+    klona: ^2.0.3
+    loader-utils: ^2.0.0
+    schema-utils: ^2.7.1
+    semver: ^7.3.2
+  peerDependencies:
     postcss: ^7.0.0
-    postcss-load-config: ^2.0.0
-    schema-utils: ^1.0.0
-  checksum: 2/50b2d8892d9b2cc6d9c81990ffb839d1716d3f571fcac7bd0dd3208447a016ce5c776b5f7de9eeb575ee5f7329221d5e22c9d1e41d56eb76ed87ce4401f90d4f
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: 2/e66d0c615ed29e1ea9388bdb7b6b863759037f71769eea41d022d6ef467a86e5001e36d3300d8f8efa5e5042af9329f44af3ad158787f645f8ac2eb93fc00ff4
   languageName: node
   linkType: hard
 

@@ -67,7 +67,9 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [PostCSSPresetEnv(PostCSSPresetEnvConfig)]
+              postcssOptions: {
+                plugins: [PostCSSPresetEnv(PostCSSPresetEnvConfig)]
+              }
             }
           }
         ]

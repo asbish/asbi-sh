@@ -65,12 +65,14 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [
-                PostCSSPresetEnv({
-                  ...PostCSSPresetEnvConfig,
-                  browsers: 'last 1 Chrome version,last 1 Firefox version'
-                })
-              ]
+              postcssOptions: {
+                plugins: [
+                  PostCSSPresetEnv({
+                    ...PostCSSPresetEnvConfig,
+                    browsers: 'last 1 Chrome version,last 1 Firefox version'
+                  })
+                ]
+              }
             }
           }
         ]
