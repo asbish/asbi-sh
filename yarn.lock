@@ -1543,13 +1543,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.4":
-  version: 7.0.5
-  resolution: "@types/json-schema@npm:7.0.5"
-  checksum: 2/6290f9fe93ac957b244262d5ff56cfd3045c63da6ed88dcc2d5b84131e6284c8e6213bf0cb81423a4f940182647bcd69057309c982f8db64dfff8f65f800ef80
-  languageName: node
-  linkType: hard
-
 "@types/json-schema@npm:^7.0.5":
   version: 7.0.6
   resolution: "@types/json-schema@npm:7.0.6"
@@ -1594,10 +1587,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^12.12.57":
-  version: 12.12.57
-  resolution: "@types/node@npm:12.12.57"
-  checksum: 2/533ce720c2ac4e04c3d5463c9cbd391fb7a1a2cbdd1df564e7e85ed67312ad29843ec12ba3bc478ae6663e0909f39456ddff7527f1437d2ea56d4d5eb9a6ec2e
+"@types/node@npm:^12.12.58":
+  version: 12.12.58
+  resolution: "@types/node@npm:12.12.58"
+  checksum: 2/a9f00fdb41baedfc9fa059d29635de4baf4d30505cbb87f3505e05ec7d003320b4424d36fadc2384cb2001a0a660bed9d3d1da134b12e9c45fbd3c9b077611fb
   languageName: node
   linkType: hard
 
@@ -2342,18 +2335,6 @@ __metadata:
     json-schema-traverse: ^0.4.1
     uri-js: ^4.2.2
   checksum: 2/aed1e0ab1b906913e2b466b1a0372ee5e4fe2927802ff81bcce350f482b0546cdb49df6ab551adad191ac19766007cdaf6c2d8b70e992528b806d9a8275ce2bd
-  languageName: node
-  linkType: hard
-
-"ajv@npm:^6.12.2":
-  version: 6.12.2
-  resolution: "ajv@npm:6.12.2"
-  dependencies:
-    fast-deep-equal: ^3.1.1
-    fast-json-stable-stringify: ^2.0.0
-    json-schema-traverse: ^0.4.1
-    uri-js: ^4.2.2
-  checksum: 2/09f3d7992c4a6e554e65accab279878c2da2a7e3ca782032de51c7c91d80a43a3e2aeb26efb8e8950b3941a89882f21aaca1170dafada784a7a0f275b5e6e745
   languageName: node
   linkType: hard
 
@@ -3945,7 +3926,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "common@workspace:common"
   dependencies:
-    "@types/node": ^12.12.57
+    "@types/node": ^12.12.58
     "@typescript-eslint/eslint-plugin": ^4.1.0
     "@typescript-eslint/parser": ^4.1.0
     cssnano: ^4.1.10
@@ -3973,7 +3954,7 @@ __metadata:
     rollup-plugin-terser: ^7.0.2
     rollup-plugin-typescript2: ^0.27.2
     shared: 0.0.0
-    stylelint: ^13.7.0
+    stylelint: ^13.7.1
     stylelint-config-recommended: ^3.0.0
     stylelint-order: ^4.1.0
     supports-webp: 2.0.1
@@ -7082,7 +7063,7 @@ fsevents@~2.1.2:
   version: 0.0.0-use.local
   resolution: "home@workspace:page/home"
   dependencies:
-    "@types/node": ^12.12.57
+    "@types/node": ^12.12.58
     "@typescript-eslint/eslint-plugin": ^4.1.0
     "@typescript-eslint/parser": ^4.1.0
     cssnano: ^4.1.10
@@ -7101,7 +7082,7 @@ fsevents@~2.1.2:
     prettier: ^2.1.1
     rimraf: ^3.0.2
     shared: 0.0.0
-    stylelint: ^13.7.0
+    stylelint: ^13.7.1
     stylelint-config-recommended: ^3.0.0
     stylelint-order: ^4.1.0
     ts-node: ^9.0.0
@@ -9673,9 +9654,9 @@ fsevents@~2.1.2:
   linkType: hard
 
 "node-fetch@npm:^2.3.0, node-fetch@npm:^2.5.0":
-  version: 2.6.0
-  resolution: "node-fetch@npm:2.6.0"
-  checksum: 2/dd9f586a9f7ddb7dd94d2aba9cb693d32f5001e9850098512fbc8a4cbdd56838afa08ed0a6725b9fce9b01ec12b713e622cbfc16d92762d8b937b238330a632a
+  version: 2.6.1
+  resolution: "node-fetch@npm:2.6.1"
+  checksum: 2/cbb171635e538162b977eac5dfe7a1e07a9a02e991924377a6435502291e2f823d306b95aabc455caebf4a118ccf836868462bc70ccc3095af02bb9da61fda37
   languageName: node
   linkType: hard
 
@@ -10747,10 +10728,10 @@ fsevents@~2.1.2:
     resize-observer-polyfill: ^1.5.1
     rimraf: ^3.0.2
     shared: 0.0.0
-    stylelint: ^13.7.0
+    stylelint: ^13.7.1
     stylelint-config-recommended: ^3.0.0
     stylelint-order: ^4.1.0
-    terser-webpack-plugin: ^4.1.0
+    terser-webpack-plugin: ^4.2.0
     three: 0.118.3
     ts-loader: ^8.0.3
     typescript: ^4.0.2
@@ -10816,10 +10797,10 @@ fsevents@~2.1.2:
     resize-observer-polyfill: ^1.5.1
     rimraf: ^3.0.2
     shared: 0.0.0
-    stylelint: ^13.7.0
+    stylelint: ^13.7.1
     stylelint-config-recommended: ^3.0.0
     stylelint-order: ^4.1.0
-    terser-webpack-plugin: ^4.1.0
+    terser-webpack-plugin: ^4.2.0
     ts-loader: ^8.0.3
     typescript: ^4.0.2
     webpack: ^4.44.1
@@ -13015,7 +12996,7 @@ fsevents@~2.1.2:
     eslint-plugin-standard: ^4.0.1
     lerna: ^3.22.1
     prettier: ^2.1.1
-    stylelint: ^13.7.0
+    stylelint: ^13.7.1
     stylelint-config-recommended: ^3.0.0
     stylelint-order: ^4.1.0
     typescript: ^4.0.2
@@ -13103,17 +13084,6 @@ fsevents@~2.1.2:
     ajv-errors: ^1.0.0
     ajv-keywords: ^3.1.0
   checksum: 2/d2f753e7a17c6054cb8c6d0806daeddac73ea2a192e452f506e50af14da1999d1435618b81a616d9f72e1606c0e46bf1870c9b429bce5d3a949d34455e6e54ff
-  languageName: node
-  linkType: hard
-
-"schema-utils@npm:^2.6.6":
-  version: 2.7.0
-  resolution: "schema-utils@npm:2.7.0"
-  dependencies:
-    "@types/json-schema": ^7.0.4
-    ajv: ^6.12.2
-    ajv-keywords: ^3.4.1
-  checksum: 2/5d3e7c9e532712bbe0b7ba2f0bdbebc88ca3066c00ceb89877667c3c7b7ea5ee65e0ff7ffbf5164ebda43b0726166d4d39b382e91e9554b7ad2f6b06e77f947d
   languageName: node
   linkType: hard
 
@@ -14161,9 +14131,9 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"stylelint@npm:^13.7.0":
-  version: 13.7.0
-  resolution: "stylelint@npm:13.7.0"
+"stylelint@npm:^13.7.1":
+  version: 13.7.1
+  resolution: "stylelint@npm:13.7.1"
   dependencies:
     "@stylelint/postcss-css-in-js": ^0.37.2
     "@stylelint/postcss-markdown": ^0.36.1
@@ -14215,7 +14185,7 @@ fsevents@~2.1.2:
     write-file-atomic: ^3.0.3
   bin:
     stylelint: bin/stylelint.js
-  checksum: 2/8020975140e5a2923ce56d31da96fda071bd3bc3d208bb4d477022dca78dd0dd1e7f64f8612c5d88e094bcd33aeb8312e5c41ceb1d1bcc2538ac2416c2372279
+  checksum: 2/09111dd7a84ec640c68f73e33e3791a7129706a384bbb581bac575b336bf290debd89b25a452d6b4fc85ed8abe97acf750e5807ddf8d970e09cbe2f7714b8427
   languageName: node
   linkType: hard
 
@@ -14405,22 +14375,22 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"terser-webpack-plugin@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "terser-webpack-plugin@npm:4.1.0"
+"terser-webpack-plugin@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "terser-webpack-plugin@npm:4.2.0"
   dependencies:
     cacache: ^15.0.5
     find-cache-dir: ^3.3.1
     jest-worker: ^26.3.0
     p-limit: ^3.0.2
-    schema-utils: ^2.6.6
+    schema-utils: ^2.7.1
     serialize-javascript: ^4.0.0
     source-map: ^0.6.1
-    terser: ^5.0.0
+    terser: ^5.3.0
     webpack-sources: ^1.4.3
   peerDependencies:
     webpack: ^4.0.0 || ^5.0.0
-  checksum: 2/87c3bffc707722895e3f6e742582ef50e0d28115df0257b54826d9f4c42b841ddcd87bb82ac944e6395541ae36fade2b8cf50609fce3f55c99080c6a580f5d10
+  checksum: 2/2e322629b717c207c0a936c3ca956bbb867c45d0bd02044d0ee757f13f125a79b005b480723f4f5ac5061a020bc170d4fe099be85a8b7943f77688f1bbda72e1
   languageName: node
   linkType: hard
 
@@ -14447,6 +14417,19 @@ fsevents@~2.1.2:
   bin:
     terser: bin/terser
   checksum: 2/807c19a8f5c5d67fbf4c463251351b9c1dfd3297fa5bf1d6e455ff0be1d1a86364e66c05872d0222d39633d5b91867c8e74d4e7a75fb54d53a387dcf5bd4b3c8
+  languageName: node
+  linkType: hard
+
+"terser@npm:^5.3.0":
+  version: 5.3.1
+  resolution: "terser@npm:5.3.1"
+  dependencies:
+    commander: ^2.20.0
+    source-map: ~0.6.1
+    source-map-support: ~0.5.12
+  bin:
+    terser: bin/terser
+  checksum: 2/383db380fec2beea487dc60321a867375c6505b3164ddb1b94d54d041d06f12f3170395127bd0fcc5e7a71824fa48f1d9b520f58761142ead82db6b0309052a9
   languageName: node
   linkType: hard
 
