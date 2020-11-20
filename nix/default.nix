@@ -3,19 +3,19 @@ import sources.nixpkgs {
   overlays = [
     (_: pkgs:
       let
-        nodejs = pkgs.nodejs-12_x.overrideAttrs (oldAttrs: rec {
-          version = "12.18.3";
+        nodejs = pkgs.nodejs-14_x.overrideAttrs (oldAttrs: rec {
+          version = "14.15.1";
           name = "nodejs-${version}";
           src = pkgs.fetchurl {
             url = "https://nodejs.org/dist/v${version}/node-v${version}.tar.xz";
-            sha256 = "03hdds6ghlmbz8q61alqj18pdnyd6hxmbhiws4pl51wlawk805bi";
+            sha256 = "1g61vqsgq3jsipw2fckj68i4a4pi1iz1kbw7mlw8jmzp8rl46q81";
           };
         });
         yarn = pkgs.yarn.overrideAttrs (oldAttrs: rec {
-          version = "1.22.4";
-          src = pkgs.fetchzip {
-            url = "https://github.com/yarnpkg/yarn/releases/download/v${version}/yarn-v${version}.tar.gz";
-            sha256 = "1s054c9cmlmzy6cfkawhaxvaxhqcq0a17n4sb12p0bp2lzkax9lm";
+          version = "1.22.10";
+          src = pkgs.fetchurl {
+            url = "https://registry.npmjs.org/yarn/-/yarn-${version}.tgz";
+            sha512 = "IanQGI9RRPAN87VGTF7zs2uxkSyQSrSPsju0COgbsKQOOXr5LtcVPeyXWgwVa0ywG3d8dg6kSYKGBuYK021qeA==";
           };
           buildInputs = [ nodejs ];
         });
