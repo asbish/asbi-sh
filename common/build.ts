@@ -8,7 +8,7 @@ import * as rollup from 'rollup';
 import rollupTsPlugin from 'rollup-plugin-typescript2';
 import { version } from './package.json';
 
-async function mkdir(outDir: string): Promise<void> {
+async function mkdir(outDir: string): Promise<string | void | undefined> {
   return fs
     .mkdir(path.resolve(process.cwd(), outDir), { recursive: true })
     .catch((err): void | never => {

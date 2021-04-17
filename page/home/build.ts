@@ -4,7 +4,7 @@ import path from 'path';
 import { promises as fs } from 'fs';
 import postcss from 'postcss';
 
-async function mkdir(outDir: string): Promise<void> {
+async function mkdir(outDir: string): Promise<string | void | undefined> {
   return fs
     .mkdir(path.resolve(process.cwd(), outDir), { recursive: true })
     .catch((err): void | never => {
