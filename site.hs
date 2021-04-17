@@ -43,10 +43,8 @@ main = hakyllWith config $ do
     create ["404.html"] $ do
         route idRoute
         compile $ do
-            let ctx = snapshotBodyField
-                        "css" "common/dist/404.css" "404Inlines"
-                    <> snapshotBodyField
-                        "img" "common/dist/404.base64" "404Inlines"
+            let ctx = snapshotBodyField "css" "common/dist/404.css" "404Inlines"
+                    <> snapshotBodyField "img" "common/dist/404.base64" "404Inlines"
                     <> constField "home" (hostname ++ "/")
                     <> defaultContext
             makeItem ("" :: String)
@@ -202,7 +200,8 @@ mkUrlContext = foldr (liftA2 mappend . getField) (pure mempty)
     getField (k, glob) = field' k <$> getMatches glob
 
     field' k (idt:_) = field k (\_ -> maybe (fail' idt) toUrl <$> getRoute idt)
-    field' _ [] = mempty
+    field' _ []      = mempty
+
     fail' idt = fail $ "No route url found " ++ toFilePath idt
 
 
@@ -325,10 +324,8 @@ pandocTransformLazyImage :: Pandoc -> Pandoc
 pandocTransformLazyImage (Pandoc meta block) = Pandoc meta $ walk f block
   where
     f (Pandoc.Image (idt, classes, kv) xs (url, _)) =
-      let (ctnr, kv') = child "data-height-ratio" kv "padding-bottom"
-                                ["lazy-image-container"] []
-          (inner, kv'') = child "data-max-width" kv' "max-width"
-                                  ["lazy-image-inner"] ctnr
+      let (ctnr, kv') = child "data-height-ratio" kv "padding-bottom" ["lazy-image-container"] []
+          (inner, kv'') = child "data-max-width" kv' "max-width" ["lazy-image-inner"] ctnr
       in Pandoc.Span (idt
                      , classes ++ ["lazy-image"]
                      , kv'' ++ [ ("data-src", url)
