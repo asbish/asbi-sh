@@ -1,5 +1,5 @@
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE NamedFieldPuns    #-}
+{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TupleSections     #-}
 
 import           Control.Applicative (empty, liftA2)
@@ -280,7 +280,7 @@ includeContext meta idt inlineSnap
 
     refAttrs :: Context (HMap.HashMap Text Text)
     refAttrs = Context $ \k _ i -> case HMap.lookup (T.pack k) (itemBody i) of
-        Just x -> return $ StringField $ T.unpack x
+        Just x  -> return $ StringField $ T.unpack x
         Nothing -> empty
 
     inline :: String -> String -> String -> Context String
