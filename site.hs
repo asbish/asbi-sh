@@ -328,38 +328,38 @@ pandocTransformLazyImage (Pandoc meta block) = Pandoc meta $ walk f block
       let (ctnr, kv') = child "data-height-ratio" kv "padding-bottom"
                                 ["lazy-image-container"] []
           (inner, kv'') = child "data-max-width" kv' "max-width"
-                                ["lazy-image-inner"] ctnr
+                                  ["lazy-image-inner"] ctnr
       in Pandoc.Span (idt
                      , classes ++ ["lazy-image"]
                      , kv'' ++ [ ("data-src", url)
-                               , ("data-alt", concatMap toString xs)
+                               , ("data-alt", T.concat $ toText <$> xs)
                                ]
                      ) inner
     f x = x
 
-    child :: String -- key
-          -> [(String, String)] -- attribute assocs
-          -> String -- CSS style property name
-          -> [String] -- CSS classes
+    child :: Text -- key
+          -> [(Text, Text)] -- attribute assocs
+          -> Text -- CSS style property name
+          -> [Text] -- CSS classes
           -> [Pandoc.Inline] -- children
-          -> ([Pandoc.Inline], [(String, String)])
+          -> ([Pandoc.Inline], [(Text, Text)])
     child k kv propName classNames children =
         let (v, kv') = lookupThenDelete k kv []
-            toStyle x = ("style", propName ++ ":" ++ x)
+            toStyle x = ("style", propName <> ":" <> x)
         in ([Pandoc.Span ("", classNames, toStyle <$> v) children], kv')
 
-    lookupThenDelete :: String -- key
-                     -> [(String, String)] -- rest assocs
-                     -> [(String, String)] -- past assocs
-                     -> ([String], [(String, String)])
+    lookupThenDelete :: Text -- key
+                     -> [(Text, Text)] -- rest assocs
+                     -> [(Text, Text)] -- past assocs
+                     -> ([Text], [(Text, Text)])
     lookupThenDelete _ [] past = ([], past)
     lookupThenDelete k (xy@(x,y):xys) past
         | k == x    = ([y], past ++ xys)
         | otherwise = lookupThenDelete k xys (xy:past)
 
-    toString (Pandoc.Str x) = x
-    toString Pandoc.Space   = " "
-    toString _              = ""
+    toText (Pandoc.Str x) = x
+    toText Pandoc.Space   = " "
+    toText _              = ""
 
 
 relativizeUrlsNoIndex :: Item String -> Compiler (Item String)
