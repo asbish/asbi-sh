@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "decko": "^1.2.0",
-    "intersection-observer": "^0.11.0",
+    "intersection-observer": "^0.12.0",
     "preact": "^10.5.13",
     "query-string": "5.1.1",
     "resize-observer-polyfill": "^1.5.1",

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "es6-promise": "4.2.8",
-    "intersection-observer": "^0.11.0",
+    "intersection-observer": "^0.12.0",
     "supports-webp": "2.0.1",
     "tslib": "^2.2.0"
   },

@@ -3765,7 +3765,7 @@ __metadata:
     eslint-plugin-node: ^11.1.0
     eslint-plugin-promise: ^5.1.0
     eslint-plugin-standard: ^5.0.0
-    intersection-observer: ^0.11.0
+    intersection-observer: ^0.12.0
     postcss: ^7.0.35
     postcss-cli: ^7.1.2
     postcss-import: ^12.0.1
@@ -7483,10 +7483,10 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"intersection-observer@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "intersection-observer@npm:0.11.0"
-  checksum: 251c369eec0834da2e248cf1827d00332eca3a6aba4d6d216afa566d29ee7bf28e537838c582a246860b5df2b2ccdace2dcdd16fd7edb70dff4f28aba3aea7ec
+"intersection-observer@npm:^0.12.0":
+  version: 0.12.0
+  resolution: "intersection-observer@npm:0.12.0"
+  checksum: 44c9f6f41b3cc09e8b56ab143c1830275db37e27f67ed5dd4e81a324a3455cdc0b0e3f04196595c89dae6b278a42c743bff48e8c273658e864cfe292df655635
   languageName: node
   linkType: hard
 
@@ -10710,7 +10710,7 @@ fsevents@~2.3.1:
     eslint-plugin-react: ^7.23.2
     eslint-plugin-standard: ^5.0.0
     html-webpack-plugin: ^4.5.0
-    intersection-observer: ^0.11.0
+    intersection-observer: ^0.12.0
     license-webpack-plugin: ^2.3.1
     mini-css-extract-plugin: ^0.11.3
     optimize-css-assets-webpack-plugin: ^5.0.4
