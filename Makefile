@@ -11,7 +11,7 @@ build_site:
 	@cabal exec site clean
 	@cabal exec site build
 
-watch_site:
+serve:
 	@cabal build
 	@cabal exec site watch
 
