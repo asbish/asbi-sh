@@ -9,7 +9,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const HTMLPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CSSMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const PostCSSPresetEnv = require('postcss-preset-env');
 const PostCSSPresetEnvConfig = require('shared/build/postcss-preset-env.config.js');
 
@@ -109,8 +109,9 @@ module.exports = {
   ].filter(Boolean),
 
   optimization: {
-    namedModules: isDev,
-    noEmitOnErrors: isDev,
+    moduleIds: isDev ? 'named' : 'natural',
+    emitOnErrors: !isDev,
+    minimize: !isDev,
     minimizer: [
       new TerserPlugin({
         extractComments: false,
@@ -126,7 +127,7 @@ module.exports = {
           }
         }
       }),
-      new OptimizeCSSAssetsPlugin()
+      new CSSMinimizerPlugin()
     ]
   }
 };
