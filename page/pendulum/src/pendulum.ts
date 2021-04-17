@@ -35,9 +35,15 @@ export default class Pendulum {
     const ropeLengthPx = ropeLength * 100;
 
     // Create rope
-    const ropeGeo = new THREE.Geometry();
-    ropeGeo.vertices.push(new THREE.Vector3(0, -ropeLengthPx, 0));
-    ropeGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+    const ropeGeo = new THREE.BufferGeometry();
+    ropeGeo.setAttribute(
+      'position',
+      // prettier-ignore
+      new THREE.Float32BufferAttribute([
+        0, -ropeLengthPx, 0,
+        0, 0, 0
+      ], 3)
+    );
     const ropeMat = new THREE.LineBasicMaterial({
       color: 0xbbbbbb,
       linewidth: 1

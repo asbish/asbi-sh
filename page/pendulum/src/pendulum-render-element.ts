@@ -52,7 +52,6 @@ class PendulumRenderElement extends HTMLElement {
 
     this.renderer = new THREE.WebGLRenderer({ alpha: true });
     this.renderer.outputEncoding = THREE.GammaEncoding;
-    this.renderer.gammaFactor = 2.2;
     this.renderer.setClearColor(0xffffff, 0);
 
     this.camera = new THREE.OrthographicCamera(0, 0, 0, 0, 1, 1000);
@@ -109,7 +108,6 @@ class PendulumRenderElement extends HTMLElement {
     this.removePendulum();
 
     this.removeChild(this.renderer.domElement);
-    this.scene.dispose();
     this.renderer.dispose();
 
     this.resizeObserver.disconnect();

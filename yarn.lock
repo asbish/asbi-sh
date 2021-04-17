@@ -1604,6 +1604,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/three@npm:^0.127.1":
+  version: 0.127.1
+  resolution: "@types/three@npm:0.127.1"
+  checksum: 9e17f928b7d65fe041cf831da142ea87edb0d6dc3562b6907524f1444231ae75f959b1c6caf9af0ce4702182cd7e7eafa4dc4afa49037273ade205f118c37be5
+  languageName: node
+  linkType: hard
+
 "@types/treeify@npm:^1.0.0":
   version: 1.0.0
   resolution: "@types/treeify@npm:1.0.0"
@@ -10635,6 +10642,7 @@ fsevents@~2.3.1:
   version: 0.0.0-use.local
   resolution: "pendulum@workspace:page/pendulum"
   dependencies:
+    "@types/three": ^0.127.1
     "@types/webgl2": ^0.0.6
     "@types/webpack-env": ^1.15.3
     "@typescript-eslint/eslint-plugin": ^4.22.0
@@ -10666,7 +10674,7 @@ fsevents@~2.3.1:
     stylelint-config-recommended: ^4.0.0
     stylelint-order: ^4.1.0
     terser-webpack-plugin: ^4.2.3
-    three: 0.125.0
+    three: 0.127.0
     ts-loader: ^8.0.11
     typescript: ^4.2.4
     webpack: ^4.44.2
@@ -14333,10 +14341,10 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"three@npm:0.125.0":
-  version: 0.125.0
-  resolution: "three@npm:0.125.0"
-  checksum: 5468097b80972d40cff16bf6c2b6a49c5733e3d37cfc632265403a7169b51475ee75325bd509ce396e317fbef42b86376c6825f887a5627b8533931a85374ffa
+"three@npm:0.127.0":
+  version: 0.127.0
+  resolution: "three@npm:0.127.0"
+  checksum: 7e1013918a5972e2e8fd98a4516381eeb07238b979a7041921b2a90095c74a02e64346e4693ed658b0208adc01df58dc7fbe43b1fedf7360e063719e6f22099a
   languageName: node
   linkType: hard
 
