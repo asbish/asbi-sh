@@ -3,8 +3,8 @@ const express = require('express');
 const webpack = require('webpack');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
-const LicenseWebpackPlugin = require('license-webpack-plugin')
-  .LicenseWebpackPlugin;
+const LicenseWebpackPlugin =
+  require('license-webpack-plugin').LicenseWebpackPlugin;
 const HTMLPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
