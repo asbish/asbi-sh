@@ -1,6 +1,5 @@
-{ mkDerivation, base, containers, filepath, hakyll, pandoc
-, pandoc-types, regex-tdfa, stdenv, text, unordered-containers
-, vector, yaml
+{ mkDerivation, lib, base, containers, filepath, hakyll, pandoc
+, pandoc-types, regex-tdfa, text, unordered-containers, vector, yaml
 }:
 mkDerivation {
   pname = "asbi-sh";
@@ -13,5 +12,5 @@ mkDerivation {
     unordered-containers vector yaml
   ];
   description = "Website for asbi.sh";
-  license = stdenv.lib.licenses.bsd3;
+  license = lib.licenses.bsd3;
 }
