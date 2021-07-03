@@ -30,6 +30,7 @@ LICENSE
 *.svg
 *.nix
 .firebase/**
+.github/**
 .yarnrc.yml
 .yarn/**
 .vscode/**
