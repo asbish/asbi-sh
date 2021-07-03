@@ -100,9 +100,13 @@ module.exports = {
         licenseTypeOverrides: {
           decko: 'MIT'
         },
-        licenseTextOverrides: {
-          'intersection-observer':
-            'https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document'
+        additionalChunkModules: {
+          pictures: [
+            {
+              name: 'preact',
+              directory: path.resolve(require.resolve('preact'), '..', '..')
+            }
+          ]
         }
       }),
     withAnalyzer && new BundleAnalyzerPlugin()
