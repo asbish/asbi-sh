@@ -68,7 +68,6 @@
 }
 
 @keyframes close-flow {
-  /* NOTE: IE11 doesn't support stroke-dashoffset in @keyframes. */
   0% {
     stroke-dashoffset: 40;
     visibility: visible;

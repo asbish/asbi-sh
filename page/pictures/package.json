@@ -10,10 +10,8 @@
   },
   "dependencies": {
     "decko": "^1.2.0",
-    "intersection-observer": "^0.12.0",
     "preact": "^10.5.14",
     "query-string": "7.0.1",
-    "resize-observer-polyfill": "^1.5.1",
     "shared": "0.0.0"
   },
   "devDependencies": {

@@ -7,7 +7,6 @@ import * as THREE from 'three';
 // Thanks: https://github.com/mrdoob/three.js/issues/14848
 require('three/examples/js/loaders/GLTFLoader.js'); // -> THREE.GLTFLoader
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import ResizeObserver from 'resize-observer-polyfill';
 
 import Pendulum from './pendulum';
 import PendulumBannerElement from './pendulum-banner-element';

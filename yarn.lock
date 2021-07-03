@@ -10104,7 +10104,6 @@ fsevents@~2.3.2:
     postcss-loader: ^6.1.1
     postcss-preset-env: ^6.7.0
     prettier: ^2.3.2
-    resize-observer-polyfill: ^1.5.1
     rimraf: ^3.0.2
     shared: 0.0.0
     stylelint: ^13.13.1
@@ -10162,7 +10161,6 @@ fsevents@~2.3.2:
     eslint-plugin-promise: ^5.1.0
     eslint-plugin-react: ^7.24.0
     html-webpack-plugin: ^5.3.2
-    intersection-observer: ^0.12.0
     license-webpack-plugin: ^2.3.19
     mini-css-extract-plugin: ^2.0.0
     pnp-webpack-plugin: ^1.6.4
@@ -10172,7 +10170,6 @@ fsevents@~2.3.2:
     preact: ^10.5.14
     prettier: ^2.3.2
     query-string: 7.0.1
-    resize-observer-polyfill: ^1.5.1
     rimraf: ^3.0.2
     shared: 0.0.0
     stylelint: ^13.13.1
@@ -11918,13 +11915,6 @@ fsevents@~2.3.2:
   version: 1.0.0
   resolution: "requires-port@npm:1.0.0"
   checksum: 0db25fb2ac9b4f2345a350846b7ba99d1f25a6686b1728246d14f05450c8f2fc066bdfae4561b4be2627c184a030a27e17268cfefdf46836e271db13734bc49e
-  languageName: node
-  linkType: hard
-
-"resize-observer-polyfill@npm:^1.5.1":
-  version: 1.5.1
-  resolution: "resize-observer-polyfill@npm:1.5.1"
-  checksum: ba14bfaf584eda299eafd6a06233a65c76586bc2bab3cdfdd1edd25fc6479f4270788ddd082e65390049b3ed542558f02bdf1f123bd912624de5b11d48857ac8
   languageName: node
   linkType: hard
 

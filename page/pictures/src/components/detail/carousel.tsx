@@ -1,6 +1,5 @@
 import { h, Component } from 'preact';
 import { bind, debounce } from 'decko';
-import ResizeObserver from 'resize-observer-polyfill';
 
 import { Source } from '../../data';
 import css from './style.css';

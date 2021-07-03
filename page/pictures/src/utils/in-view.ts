@@ -1,4 +1,3 @@
-import 'intersection-observer';
 import { bind } from 'decko';
 
 class InView {
