@@ -1645,10 +1645,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/query-string@npm:5.1.0":
-  version: 5.1.0
-  resolution: "@types/query-string@npm:5.1.0"
-  checksum: b9d6580bd4219c9c875f1718e1a51e96d94bf20d340ab01481554a500475ef253506b7c9ec583961700c9ab27aa56e7ef3a738afcf9f1c10c94b42b75df675ef
+"@types/query-string@npm:6.3.0":
+  version: 6.3.0
+  resolution: "@types/query-string@npm:6.3.0"
+  dependencies:
+    query-string: "*"
+  checksum: 29c8001780b04c8c9a61098b68f9389aaa4b1948d5a8a4dddca22a67ad133746c796623823fdcf1b88038612ef0dedf19e5f9423f796b5fcdb6f52e1d415ea0d
   languageName: node
   linkType: hard
 
@@ -5661,6 +5663,13 @@ __metadata:
   dependencies:
     to-regex-range: ^5.0.1
   checksum: efca43d59b487ad4bc0b2b1cb9e51617c75a7b0159db51fa190c75c3d634ea5fad1ff4750d7c14346add4cd065e3c46e8f99af333edf2b4ec2a424f87e491a85
+  languageName: node
+  linkType: hard
+
+"filter-obj@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "filter-obj@npm:1.1.0"
+  checksum: 1049ac0c306198edf2c090375f7a80545a01e798b4996dbde13398a263cd923b5eb8a240dfadb03260621249a404a686e1a55980c6e59af70ee3880323998703
   languageName: node
   linkType: hard
 
@@ -10136,7 +10145,7 @@ fsevents@~2.3.2:
   version: 0.0.0-use.local
   resolution: "pictures@workspace:page/pictures"
   dependencies:
-    "@types/query-string": 5.1.0
+    "@types/query-string": 6.3.0
     "@typescript-eslint/eslint-plugin": ^4.28.1
     "@typescript-eslint/parser": ^4.28.1
     clean-webpack-plugin: ^4.0.0-alpha.0
@@ -10160,9 +10169,9 @@ fsevents@~2.3.2:
     postcss: ^8.3.5
     postcss-loader: ^6.1.1
     postcss-preset-env: ^6.7.0
-    preact: ^10.5.13
+    preact: ^10.5.14
     prettier: ^2.3.2
-    query-string: 5.1.1
+    query-string: 7.0.1
     resize-observer-polyfill: ^1.5.1
     rimraf: ^3.0.2
     shared: 0.0.0
@@ -11211,10 +11220,10 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"preact@npm:^10.5.13":
-  version: 10.5.13
-  resolution: "preact@npm:10.5.13"
-  checksum: 9433cd19eb7497b60920301fea52e17a815fbf501f2c52f46b2a51609d456a95978ee4457b717c2e3dc19b9fc177c1bf73ef29be7cedc2b6632a08165c5d1af3
+"preact@npm:^10.5.14":
+  version: 10.5.14
+  resolution: "preact@npm:10.5.14"
+  checksum: 1cb6f0eecd0f1de15621efae40f86790dac5a5eb68ca2a02790685c234055fc6efe60def719a0a90b747ed35b1b5099fc7a3e33cf0d4972bf9b1e3895cf02efa
   languageName: node
   linkType: hard
 
@@ -11420,14 +11429,15 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"query-string@npm:5.1.1":
-  version: 5.1.1
-  resolution: "query-string@npm:5.1.1"
+"query-string@npm:*, query-string@npm:7.0.1":
+  version: 7.0.1
+  resolution: "query-string@npm:7.0.1"
   dependencies:
     decode-uri-component: ^0.2.0
-    object-assign: ^4.1.0
-    strict-uri-encode: ^1.0.0
-  checksum: 68d4ad519a9fc288bc9ade3e515ce89a6806b88fd92e1459277570dca753665bb1b43e4cc7747012fc3b19b3d4283a724d519b568859943f57aaa3668c4d5b4b
+    filter-obj: ^1.1.0
+    split-on-first: ^1.0.0
+    strict-uri-encode: ^2.0.0
+  checksum: 0709d82a6dc332de978878b1bfe8de093b50527bcfcb2fd04e46f2d69c94bbad79e056a47e549b4ca5751cf624a03b27fb26ec3e29294a369e97be7d67279891
   languageName: node
   linkType: hard
 
@@ -12891,6 +12901,13 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"split-on-first@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "split-on-first@npm:1.1.0"
+  checksum: 2ef26fee62665be9547e8035734b856e658b08fd13e70271a2f258147f29d1f18e12b5cb7f7670d83e113c172a9c5fe3d87d9d7c02a1d3d57824818d75d942ab
+  languageName: node
+  linkType: hard
+
 "split-string@npm:^3.0.1, split-string@npm:^3.0.2":
   version: 3.1.0
   resolution: "split-string@npm:3.1.0"
@@ -13015,10 +13032,10 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"strict-uri-encode@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "strict-uri-encode@npm:1.1.0"
-  checksum: 6c80f6998a45414d7c124772383cc10ce7bd22586af80762407cded1569666564fb8c0a4c9c997ac39a1116d46dfffc5d57135e759a0acb66a4da1191f5a3a4a
+"strict-uri-encode@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "strict-uri-encode@npm:2.0.0"
+  checksum: 775012e88b9d8dff939d514bf376d615a15e8228a5dd587a94ac3c71fce41aa3635cd808aa796e2c1cd33f3f2fe2fbf89b74ee18a504a1905efa1854311e04bb
   languageName: node
   linkType: hard
 

@@ -11,13 +11,13 @@
   "dependencies": {
     "decko": "^1.2.0",
     "intersection-observer": "^0.12.0",
-    "preact": "^10.5.13",
-    "query-string": "5.1.1",
+    "preact": "^10.5.14",
+    "query-string": "7.0.1",
     "resize-observer-polyfill": "^1.5.1",
     "shared": "0.0.0"
   },
   "devDependencies": {
-    "@types/query-string": "5.1.0",
+    "@types/query-string": "6.3.0",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
