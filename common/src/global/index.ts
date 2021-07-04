@@ -11,6 +11,7 @@ document.addEventListener(
   false
 );
 
+// TODO: Move to shared
 let onceSupported = false;
 try {
   const options = Object.defineProperty({}, 'once', {
@@ -20,8 +21,12 @@ try {
     }
   });
 
+  /* eslint-disable @typescript-eslint/ban-ts-comment */
+  // @ts-ignore
   window.addEventListener('test', options, options);
+  // @ts-ignore
   window.removeEventListener('test', options, options);
+  /* eslint-enable @typescript-eslint/ban-ts-comment */
 } catch (err) {
   onceSupported = false;
 }
