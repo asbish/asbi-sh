@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "yarn run clean && node -r ./ts-node.js ./build.ts",
-    "build-dev": "NODE_ENV=development node -r ./ts-node.js build.ts",
+    "build-dev": "NODE_ENV=development node -r ./ts-node.js ./build.ts",
     "clean": "rimraf dist"
   },
   "dependencies": {
