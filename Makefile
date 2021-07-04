@@ -23,4 +23,8 @@ clean:
 	@yarn clean
 	@cabal exec site clean
 
-.PHONY: all pre_process build_pages build_site serve test clean
+upgrade:
+	@yarn upgrade-interactive
+	@yarn pnpify --sdk base
+
+.PHONY: all pre_process build_pages build_site serve test clean upgrade
