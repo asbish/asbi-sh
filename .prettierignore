@@ -10,6 +10,7 @@ LICENSE
 .stylelintignore
 .prettierignore
 .pnp.js
+.pnp.cjs
 *.el
 *.hs
 *.cabal
