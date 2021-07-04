@@ -14,7 +14,7 @@ module.exports = {
     'nesting-rules': true,
     'custom-media-queries': true
   },
-  browsers: '> 1%,last 2 versions,Firefox ESR,IE 11',
+  browsers: 'Firefox ESR,IE 11',
   preserve: false,
   autoprefixer: { grid: true },
   importFrom: [
